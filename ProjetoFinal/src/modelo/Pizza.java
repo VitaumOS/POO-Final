@@ -11,4 +11,9 @@ package modelo;
 public class Pizza extends Produto{
     
     private Ingredientes[] ingredientes;
+    
+    public Pizza(String nome, double preco){
+        
+        super(preco, nome);
+    }
 }

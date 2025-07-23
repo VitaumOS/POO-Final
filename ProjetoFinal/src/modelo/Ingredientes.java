@@ -10,4 +10,11 @@ package modelo;
  */
 public class Ingredientes {
     
+    private String nome;
+    
+    public Ingredientes(String nome){
+        
+        this.nome = nome;
+    }
+    
 }

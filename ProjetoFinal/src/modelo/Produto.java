@@ -10,6 +10,22 @@ package modelo;
  */
 public abstract class Produto {
     
-    private int preco;
+    protected String nome;
+    protected double preco;
+
+    public Produto(double preco, String nome) {
+        this.preco = preco;
+        this.nome = nome;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
+    
+    
     
 }

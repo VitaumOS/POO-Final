@@ -9,5 +9,12 @@ package modelo;
  * @author Vitor
  */
 public class Acompanhamento extends Produto {
+
+
+    public Acompanhamento(String nome, double preco) {
+
+        super(preco, nome);
+    }
+
     
 }
