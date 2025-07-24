@@ -69,7 +69,6 @@ public class Pedido {
             valor_total+=acomp3.getPreco();
         }
         
-        System.out.println(valor_total);
         
     }
     

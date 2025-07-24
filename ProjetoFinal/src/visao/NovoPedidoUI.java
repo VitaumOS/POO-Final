@@ -4,6 +4,7 @@
  */
 package visao;
 
+import excecoes.EstoqueInsuficienteException;
 import modelo.Acompanhamento;
 import modelo.Ingrediente;
 import modelo.Pedido;
@@ -322,8 +323,19 @@ public class NovoPedidoUI extends javax.swing.JFrame {
         }
         
         for(int i=0; i<pizza.getQuantIngredientes(); i++){
-            Ingrediente ing = pizza.getIngrediente(i);
-            pizzaria.getEstoqueIngredientes().pegarIngrediente(ing);// envolver em try-catch
+            
+            try{
+                Ingrediente ing = pizza.getIngrediente(i);
+                pizzaria.getEstoqueIngredientes().pegarIngrediente(ing);
+            }
+            catch(EstoqueInsuficienteException ex){
+                javax.swing.JOptionPane.showMessageDialog(
+                    null, 
+                    ex.getMessage(), 
+                    "Erro", 
+                    javax.swing.JOptionPane.ERROR_MESSAGE
+                );
+            }
             //FAZER O MESMO PRA BORDA
         }
         

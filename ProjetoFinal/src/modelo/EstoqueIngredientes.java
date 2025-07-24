@@ -4,6 +4,7 @@
  */
 package modelo;
 
+import excecoes.EstoqueInsuficienteException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -32,12 +33,12 @@ public class EstoqueIngredientes {
         return ingredientes.get(ing).intValue();
     }
     
-    public void pegarIngrediente(Ingrediente ing){
+    public void pegarIngrediente(Ingrediente ing) throws EstoqueInsuficienteException{
         String nome = ing.getNome();
         Integer quant = ingredientes.get(nome);
         
         if(quant == 0){
-            //LANÇAR EXCEÇÃO
+            throw new EstoqueInsuficienteException(nome);
         }
         else{
            ingredientes.put(nome, quant - 1);
