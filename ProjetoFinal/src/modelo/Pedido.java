@@ -30,17 +30,10 @@ public class Pedido {
         valor_total = 0.0;
         acompanhamentos = new String[3];
     }
-    
-    
-    public String getNome_cliente() {
-        return nome_cliente;
+
+    public double getValor_total() {
+        return valor_total;
     }
-
-    public void setNome_cliente(String nome_cliente) {
-        this.nome_cliente = nome_cliente;
-    }
-
-
     
     public void fazerPedido(String nome_cliente, Pizza pizza, Acompanhamento acomp1, Acompanhamento acomp2, Acompanhamento acomp3, String obs){
         this.nome_cliente = nome_cliente;

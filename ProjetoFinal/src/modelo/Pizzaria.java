@@ -15,6 +15,7 @@ public class Pizzaria {
     private ArrayList<Pizza> cardapio_pizzas;
     private ArrayList<Acompanhamento> acompanhamentos;
     private ArrayList<BordaPizza> bordas;
+    private HistoricoPedido historicopedido;
     private EstoqueIngredientes est_ing;
     
     public Pizzaria(){
@@ -139,6 +140,8 @@ public class Pizzaria {
         bordas.add(b3);
         bordas.add(b4);
         bordas.add(b5);
+        
+        historicopedido = new HistoricoPedido();
 
     }
 

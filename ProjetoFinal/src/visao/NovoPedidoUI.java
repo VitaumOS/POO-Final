@@ -329,6 +329,7 @@ public class NovoPedidoUI extends javax.swing.JFrame {
                 pizzaria.getEstoqueIngredientes().pegarIngrediente(ing);
             }
             catch(EstoqueInsuficienteException ex){
+                int aux = i-1;
                 javax.swing.JOptionPane.showMessageDialog(
                     null, 
                     ex.getMessage(), 
@@ -345,6 +346,12 @@ public class NovoPedidoUI extends javax.swing.JFrame {
             acomp3 = pizzaria.getAcompanhamentos(combobox_acomp3.getSelectedIndex()-1);
         }
         pedido.fazerPedido(nome, pizza, acomp1, acomp2, acomp3, obs.getText());
+        javax.swing.JOptionPane.showMessageDialog(
+            null, 
+            "Pedido feito com sucesso!\nO Pedido deu um valor de R$"+pedido.getValor_total(), 
+            "Pedido completo", 
+            javax.swing.JOptionPane.INFORMATION_MESSAGE
+        );
             
     }//GEN-LAST:event_btn_concluirpedidoActionPerformed
 

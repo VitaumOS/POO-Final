@@ -4,11 +4,14 @@
  */
 package modelo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Vitor
  */
 public class HistoricoPedido {
     
-    private Pedido[] pedidos; 
+    private ArrayList<Pedido> pedidos; 
+    
 }
