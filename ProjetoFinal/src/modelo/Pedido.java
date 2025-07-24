@@ -17,6 +17,7 @@ public class Pedido {
     private int id;
     private Pizza pizza;
     private ArrayList<Acompanhamento> acompanhamentos;
+    private String obs;
     private Random rd;
 
     public Pedido() {
@@ -51,7 +52,10 @@ public class Pedido {
         return acompanhamentos.get(id);
     }
     
-    
+    public void fazerPedido(){
+        
+        
+    }
     
     
 }

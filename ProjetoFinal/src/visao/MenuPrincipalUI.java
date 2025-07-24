@@ -4,17 +4,27 @@
  */
 package visao;
 
+import java.io.File;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import modelo.Ingrediente;
+import modelo.Pizza;
+import modelo.Pizzaria;
+
 /**
  *
  * @author Vitor
  */
 public class MenuPrincipalUI extends javax.swing.JFrame {
-
+    
+    private Pizzaria pizzaria;
     /**
      * Creates new form Janela
      */
     public MenuPrincipalUI() {
         initComponents();
+        pizzaria = new Pizzaria();
     }
 
     /**
@@ -32,7 +42,7 @@ public class MenuPrincipalUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         btn_novopedido = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btn_estoqueingredientes = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -72,8 +82,13 @@ public class MenuPrincipalUI extends javax.swing.JFrame {
         jButton3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton3.setText("Ver resumo do dia");
 
-        jButton4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton4.setText("Ver estoque de ingredientes");
+        btn_estoqueingredientes.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btn_estoqueingredientes.setText("Ver estoque de ingredientes");
+        btn_estoqueingredientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_estoqueingredientesActionPerformed(evt);
+            }
+        });
 
         jButton5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton5.setText("Ir pro cabana");
@@ -105,7 +120,7 @@ public class MenuPrincipalUI extends javax.swing.JFrame {
                 .addGap(85, 85, 85)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btn_novopedido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btn_estoqueingredientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
@@ -127,7 +142,7 @@ public class MenuPrincipalUI extends javax.swing.JFrame {
                     .addComponent(jButton3))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
+                    .addComponent(btn_estoqueingredientes)
                     .addComponent(jButton5))
                 .addContainerGap(118, Short.MAX_VALUE))
         );
@@ -176,34 +191,20 @@ public class MenuPrincipalUI extends javax.swing.JFrame {
         new NovoPedidoUI().setVisible(true);
     }//GEN-LAST:event_btn_novopedidoActionPerformed
 
+    private void btn_estoqueingredientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_estoqueingredientesActionPerformed
+        new EstoqueIngredientesUI().setVisible(true);
+    }//GEN-LAST:event_btn_estoqueingredientesActionPerformed
+
     /**
      * @param args the command line arguments
      */
+   
+    
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipalUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipalUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipalUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipalUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
+        
+        String filepath ="src\\sounds\\fnaf_music.wav";
+        PlayMusic(filepath);
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -211,12 +212,31 @@ public class MenuPrincipalUI extends javax.swing.JFrame {
             }
         });
     }
+     
+     public static void PlayMusic(String location){
+        try{
+            File musicPath = new File(location);
+            if(musicPath.exists()){
+                AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
+                Clip clip = AudioSystem.getClip();
+                clip.open(audioInput);
+                clip.start();
+                
+            }
+            else{
+                
+            }
+        }
+        catch(Exception e){
+            
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_estoqueingredientes;
     private javax.swing.JButton btn_novopedido;
     private javax.swing.JMenu btn_sair;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;

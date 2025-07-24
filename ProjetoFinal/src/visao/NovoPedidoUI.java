@@ -4,17 +4,22 @@
  */
 package visao;
 
+import modelo.Pedido;
+import modelo.Pizzaria;
+
 /**
  *
  * @author Vitor
  */
 public class NovoPedidoUI extends javax.swing.JFrame {
+    
 
     /**
      * Creates new form NovoPedido
      */
     public NovoPedidoUI() {
         initComponents();
+        
     }
 
     /**
@@ -34,15 +39,15 @@ public class NovoPedidoUI extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        nome_cliente = new javax.swing.JTextField();
+        tipo_pizza = new javax.swing.JComboBox<>();
         checkbox_acomp = new javax.swing.JCheckBox();
         combobox_acomp1 = new javax.swing.JComboBox<>();
         combobox_acomp2 = new javax.swing.JComboBox<>();
         combobox_acomp3 = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        obs = new javax.swing.JTextField();
+        btn_concluirpedido = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         checkbox_borda = new javax.swing.JCheckBox();
@@ -51,6 +56,7 @@ public class NovoPedidoUI extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Novo Pedido");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel1.setText("Novo Pedido");
@@ -73,13 +79,13 @@ public class NovoPedidoUI extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setText("Acompanhamento 3");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        nome_cliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                nome_clienteActionPerformed(evt);
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        tipo_pizza.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         checkbox_acomp.setText("Sim");
         checkbox_acomp.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -105,11 +111,11 @@ public class NovoPedidoUI extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setText("Observações:");
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton1.setText("Concluir Pedido");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_concluirpedido.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btn_concluirpedido.setText("Concluir Pedido");
+        btn_concluirpedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_concluirpedidoActionPerformed(evt);
             }
         });
 
@@ -170,10 +176,10 @@ public class NovoPedidoUI extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel8)
                                         .addGap(59, 59, 59)
-                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(obs, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(73, 73, 73)
-                                        .addComponent(jButton1)
+                                        .addComponent(btn_concluirpedido)
                                         .addGap(108, 108, 108)
                                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -189,8 +195,8 @@ public class NovoPedidoUI extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(checkbox_borda)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jComboBox1, 0, 381, Short.MAX_VALUE)
-                                            .addComponent(jTextField1))))
+                                            .addComponent(tipo_pizza, 0, 381, Short.MAX_VALUE)
+                                            .addComponent(nome_cliente))))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                     .addComponent(jLabel4)
                                     .addGap(28, 28, 28)
@@ -213,11 +219,11 @@ public class NovoPedidoUI extends javax.swing.JFrame {
                 .addGap(42, 42, 42)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nome_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tipo_pizza, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
@@ -248,10 +254,10 @@ public class NovoPedidoUI extends javax.swing.JFrame {
                         .addComponent(jLabel8))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(34, 34, 34)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(obs, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(btn_concluirpedido)
                     .addComponent(jButton2))
                 .addGap(30, 30, 30))
         );
@@ -275,17 +281,18 @@ public class NovoPedidoUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void nome_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome_clienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_nome_clienteActionPerformed
 
     private void checkbox_acompActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkbox_acompActionPerformed
         
     }//GEN-LAST:event_checkbox_acompActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btn_concluirpedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_concluirpedidoActionPerformed
+        Pedido pedido = new Pedido();
+        pedido.setNome_cliente(nome_cliente.getText());
+    }//GEN-LAST:event_btn_concluirpedidoActionPerformed
 
     private void checkbox_acompStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_checkbox_acompStateChanged
         if(checkbox_acomp.isSelected()){
@@ -314,52 +321,17 @@ public class NovoPedidoUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_checkbox_bordaStateChanged
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NovoPedidoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NovoPedidoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NovoPedidoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NovoPedidoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new NovoPedidoUI().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_concluirpedido;
     private javax.swing.JCheckBox checkbox_acomp;
     private javax.swing.JCheckBox checkbox_borda;
     private javax.swing.JComboBox<String> combobox_acomp1;
     private javax.swing.JComboBox<String> combobox_acomp2;
     private javax.swing.JComboBox<String> combobox_acomp3;
     private javax.swing.JComboBox<String> combobox_borda;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -372,7 +344,8 @@ public class NovoPedidoUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField nome_cliente;
+    private javax.swing.JTextField obs;
+    private javax.swing.JComboBox<String> tipo_pizza;
     // End of variables declaration//GEN-END:variables
 }
