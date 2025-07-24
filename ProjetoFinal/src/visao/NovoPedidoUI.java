@@ -7,6 +7,7 @@ package visao;
 import modelo.Acompanhamento;
 import modelo.Ingrediente;
 import modelo.Pedido;
+import modelo.Pizza;
 import modelo.Pizzaria;
 
 /**
@@ -310,24 +311,28 @@ public class NovoPedidoUI extends javax.swing.JFrame {
 
     private void btn_concluirpedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_concluirpedidoActionPerformed
         Pedido pedido = new Pedido();
-        pedido.setNome_cliente(nome_cliente.getText());
-        pedido.setPizza(pizzaria.getCardapio_pizzas(tipo_pizza.getSelectedIndex()));
-        for(int i=0; i<pedido.getPizza().getQuantIngredientes(); i++){
-            Ingrediente ing = pedido.getPizza().getIngrediente(i);
+        String nome = nome_cliente.getText();
+        Pizza pizza = pizzaria.getCardapio_pizzas(tipo_pizza.getSelectedIndex());
+        Acompanhamento acomp1 = null;
+        Acompanhamento acomp2 = null;
+        Acompanhamento acomp3 = null;
+        
+        if(checkbox_borda.isSelected()){
+           pizza.getBorda().setNome(combobox_borda.getItemAt(combobox_borda.getSelectedIndex()));
+        }
+        
+        for(int i=0; i<pizza.getQuantIngredientes(); i++){
+            Ingrediente ing = pizza.getIngrediente(i);
             pizzaria.getEstoqueIngredientes().pegarIngrediente(ing);// envolver em try-catch
             //FAZER O MESMO PRA BORDA
         }
-        if(checkbox_borda.isSelected()){
-            pedido.getPizza().getBorda().setNome(combobox_borda.getItemAt(combobox_borda.getSelectedIndex()));
-        }
+        
         if(checkbox_acomp.isSelected()){
-            pedido.addAcompanhamento(pizzaria.getAcompanhamentos(combobox_acomp1.getSelectedIndex()+1));
-            pedido.addAcompanhamento(pizzaria.getAcompanhamentos(combobox_acomp2.getSelectedIndex()+1));
-            pedido.addAcompanhamento(pizzaria.getAcompanhamentos(combobox_acomp3.getSelectedIndex()+1));
+            acomp1 = pizzaria.getAcompanhamentos(combobox_acomp1.getSelectedIndex()-1);
+            acomp2 = pizzaria.getAcompanhamentos(combobox_acomp2.getSelectedIndex()-1);
+            acomp3 = pizzaria.getAcompanhamentos(combobox_acomp3.getSelectedIndex()-1);
         }
-        pedido.setObs(obs.getText());
-        
-        
+        pedido.fazerPedido(nome, pizza, acomp1, acomp2, acomp3, obs.getText());
             
     }//GEN-LAST:event_btn_concluirpedidoActionPerformed
 

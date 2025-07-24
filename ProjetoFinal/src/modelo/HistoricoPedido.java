@@ -10,6 +10,5 @@ package modelo;
  */
 public class HistoricoPedido {
     
-    
     private Pedido[] pedidos; 
 }

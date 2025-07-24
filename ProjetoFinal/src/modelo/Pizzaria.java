@@ -70,13 +70,11 @@ public class Pizzaria {
         pizza2.setIngrediente(ing12); 
         pizza2.setIngrediente(ing15); 
 
-
         pizza3.setIngrediente(ing3); 
         pizza3.setIngrediente(ing4); 
         pizza3.setIngrediente(ing14); 
         pizza3.setIngrediente(ing2);  
         pizza3.setIngrediente(ing15); 
-
 
         pizza4.setIngrediente(ing5);  
         pizza4.setIngrediente(ing6);  
@@ -142,8 +140,6 @@ public class Pizzaria {
         bordas.add(b4);
         bordas.add(b5);
 
-
-
     }
 
     public Pizza getCardapio_pizzas(int index) {
@@ -160,6 +156,8 @@ public class Pizzaria {
     }
     
     public Acompanhamento getAcompanhamentos(int index){
+        if(index==-1)
+            return null;
         return acompanhamentos.get(index);
     }
     

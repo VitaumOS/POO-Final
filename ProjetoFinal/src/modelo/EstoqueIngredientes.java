@@ -22,8 +22,8 @@ public class EstoqueIngredientes {
     }
     
     public void addIngrediente(Ingrediente ing, int quant){
-        
-        ingredientes.put(ing.getNome(), quant); 
+        Integer aux = quant;
+        ingredientes.put(ing.getNome(), aux); 
         tipo_ingrediente.add(ing);
     }
     
@@ -33,12 +33,14 @@ public class EstoqueIngredientes {
     }
     
     public void pegarIngrediente(Ingrediente ing){
-        if(ingredientes.get(ing).equals(0)){
+        String nome = ing.getNome();
+        Integer quant = ingredientes.get(nome);
+        
+        if(quant == 0){
             //LANÇAR EXCEÇÃO
         }
         else{
-           Integer aux = ingredientes.get(ing)-1;
-           ingredientes.put(ing.getNome(), aux);
+           ingredientes.put(nome, quant - 1);
         }
     }
     
