@@ -52,9 +52,9 @@ public class Pedido {
         return acompanhamentos.get(id);
     }
     
-    public void fazerPedido(){
+    public void addAcompanhamento(Acompanhamento acomp){
         
-        
+        acompanhamentos.add(acomp);
     }
     
     

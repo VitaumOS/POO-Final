@@ -13,18 +13,18 @@ import java.util.ArrayList;
 public class Pizza extends Produto{
     
     private ArrayList<Ingrediente> ingredientes;
-    private Ingrediente borda_recheada;
+    private BordaPizza borda;
     
     public Pizza(String nome, double preco){
         
         super(preco, nome);
         ingredientes = new ArrayList<>();
-        borda_recheada = null;
+        borda = new BordaPizza("Sem Recheio");
     }
     
     public boolean temBordaRecheada(){
         
-        return borda_recheada != null;
+        return borda.getNome().equals("Sem Recheio");
     }
     
     public void setIngrediente(Ingrediente ing){
@@ -35,12 +35,17 @@ public class Pizza extends Produto{
         return ingredientes.get(ind);
     }
 
-    public Ingrediente getBorda_recheada() {
-        return borda_recheada;
+    public BordaPizza getBorda() {
+        return borda;
     }
 
-    public void setBorda_recheada(Ingrediente borda_recheada) {
-        this.borda_recheada = borda_recheada;
+    public void setBorda_recheada(BordaPizza borda_recheada) {
+        this.borda = borda_recheada;
+    }
+    
+    public int getQuantIngredientes(){
+        
+        return ingredientes.size();
     }
     
     

@@ -4,17 +4,32 @@
  */
 package visao;
 
+import java.util.Set;
+import javax.swing.table.DefaultTableModel;
+import modelo.Pizzaria;
+
 /**
  *
  * @author Vitor
  */
 public class EstoqueIngredientesUI extends javax.swing.JFrame {
+    
+    private Pizzaria pizzaria;
 
     /**
      * Creates new form EstoqueIngredientesUI
      */
-    public EstoqueIngredientesUI() {
+    public EstoqueIngredientesUI(Pizzaria pizzaria) {
         initComponents();
+        
+        for(int i=0; i<pizzaria.getEstoqueIngredientes().getQuantIngredientes(); i++){
+            String aux= pizzaria.getEstoqueIngredientes().pegarNomeIngredientes(i);
+            int qtd = pizzaria.getEstoqueIngredientes().getQuantidade(aux);
+
+            tabela_ingredientes.setValueAt(aux, i, 0);
+            tabela_ingredientes.setValueAt(qtd, i, 1);
+        }
+            
     }
 
     /**
@@ -28,7 +43,7 @@ public class EstoqueIngredientesUI extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabela_ingredientes = new javax.swing.JTable();
         btn_cancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -37,16 +52,9 @@ public class EstoqueIngredientesUI extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel1.setText("Estoque de Ingredientes");
 
-        jTable1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabela_ingredientes.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tabela_ingredientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
                 {null, null},
                 {null, null},
                 {null, null},
@@ -71,8 +79,28 @@ public class EstoqueIngredientesUI extends javax.swing.JFrame {
             new String [] {
                 "Nome do Ingrediente", "Quantidade"
             }
-        ));
-        jScrollPane3.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabela_ingredientes.setToolTipText("");
+        tabela_ingredientes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tabela_ingredientes.setShowGrid(true);
+        tabela_ingredientes.setShowHorizontalLines(true);
+        tabela_ingredientes.setShowVerticalLines(true);
+        jScrollPane3.setViewportView(tabela_ingredientes);
 
         btn_cancelar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btn_cancelar.setText("Cancelar");
@@ -104,8 +132,8 @@ public class EstoqueIngredientesUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(47, 47, 47)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 503, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btn_cancelar)
@@ -125,6 +153,6 @@ public class EstoqueIngredientesUI extends javax.swing.JFrame {
     private javax.swing.JButton btn_cancelar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tabela_ingredientes;
     // End of variables declaration//GEN-END:variables
 }

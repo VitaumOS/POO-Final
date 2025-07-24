@@ -4,6 +4,7 @@
  */
 package modelo;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -12,18 +13,21 @@ import java.util.HashMap;
  */
 public class EstoqueIngredientes {
     
-    private HashMap<Ingrediente, Integer> ingredientes;
+    private HashMap<String, Integer> ingredientes;
+    private ArrayList<Ingrediente> tipo_ingrediente;
     
     public EstoqueIngredientes(){
         ingredientes = new HashMap<>();
+        tipo_ingrediente = new ArrayList<>();
     }
     
-    public void setIngrediente(Ingrediente ing, int quant){
+    public void addIngrediente(Ingrediente ing, int quant){
         
-        ingredientes.put(ing, quant);     
+        ingredientes.put(ing.getNome(), quant); 
+        tipo_ingrediente.add(ing);
     }
     
-    public int getQuantidade(Ingrediente ing){
+    public int getQuantidade(String ing){
         
         return ingredientes.get(ing).intValue();
     }
@@ -34,9 +38,16 @@ public class EstoqueIngredientes {
         }
         else{
            Integer aux = ingredientes.get(ing)-1;
-           ingredientes.put(ing, aux);
+           ingredientes.put(ing.getNome(), aux);
         }
     }
     
+    public int getQuantIngredientes(){
+        return ingredientes.size();
+    }
+    
+    public String pegarNomeIngredientes(int index){
+        return tipo_ingrediente.get(index).getNome();
+    }
     
 }

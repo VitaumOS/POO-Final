@@ -4,6 +4,8 @@
  */
 package visao;
 
+import modelo.Acompanhamento;
+import modelo.Ingrediente;
 import modelo.Pedido;
 import modelo.Pizzaria;
 
@@ -13,13 +15,28 @@ import modelo.Pizzaria;
  */
 public class NovoPedidoUI extends javax.swing.JFrame {
     
+    private Pizzaria pizzaria;
+    private Pedido pedido;
 
     /**
      * Creates new form NovoPedido
      */
-    public NovoPedidoUI() {
+    public NovoPedidoUI(Pizzaria pizzaria) {
         initComponents();
         
+        this.pizzaria = pizzaria;
+        for(int i=0; i<pizzaria.getQuantPizza(); i++)
+            tipo_pizza.addItem(pizzaria.getCardapio_pizzas(i).getNome()+" (R$"+pizzaria.getCardapio_pizzas(i).getPreco()+")");
+        for(int i=0; i<pizzaria.getQuantBordaPizza(); i++){
+            combobox_borda.addItem(pizzaria.getBordaPizza(i).getNome());
+
+        }
+        for(int i=0; i<pizzaria.getQuantAcompanhamentos(); i++){
+            String aux = pizzaria.getAcompanhamentos(i).getNome()+" (R$"+ pizzaria.getAcompanhamentos(i).getPreco()+")";
+            combobox_acomp1.addItem(aux);
+            combobox_acomp2.addItem(aux);
+            combobox_acomp3.addItem(aux);
+        }
     }
 
     /**
@@ -48,7 +65,7 @@ public class NovoPedidoUI extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         obs = new javax.swing.JTextField();
         btn_concluirpedido = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btn_cancelar = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         checkbox_borda = new javax.swing.JCheckBox();
         combobox_borda = new javax.swing.JComboBox<>();
@@ -85,8 +102,6 @@ public class NovoPedidoUI extends javax.swing.JFrame {
             }
         });
 
-        tipo_pizza.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         checkbox_acomp.setText("Sim");
         checkbox_acomp.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -99,14 +114,19 @@ public class NovoPedidoUI extends javax.swing.JFrame {
             }
         });
 
-        combobox_acomp1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        combobox_acomp1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nenhum" }));
         combobox_acomp1.setEnabled(false);
 
-        combobox_acomp2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        combobox_acomp2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nenhum" }));
         combobox_acomp2.setEnabled(false);
 
-        combobox_acomp3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        combobox_acomp3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nenhum" }));
         combobox_acomp3.setEnabled(false);
+        combobox_acomp3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combobox_acomp3ActionPerformed(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setText("Observações:");
@@ -119,25 +139,24 @@ public class NovoPedidoUI extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton2.setText("Cancelar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btn_cancelar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btn_cancelar.setText("Cancelar");
+        btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btn_cancelarActionPerformed(evt);
             }
         });
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel9.setText("Borda Recheada");
 
-        checkbox_borda.setText("Sim");
+        checkbox_borda.setText("Sim (Preço padrão de R$ 10,00)");
         checkbox_borda.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 checkbox_bordaStateChanged(evt);
             }
         });
 
-        combobox_borda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         combobox_borda.setEnabled(false);
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -181,7 +200,7 @@ public class NovoPedidoUI extends javax.swing.JFrame {
                                         .addGap(73, 73, 73)
                                         .addComponent(btn_concluirpedido)
                                         .addGap(108, 108, 108)
-                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -258,7 +277,7 @@ public class NovoPedidoUI extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_concluirpedido)
-                    .addComponent(jButton2))
+                    .addComponent(btn_cancelar))
                 .addGap(30, 30, 30))
         );
 
@@ -292,6 +311,22 @@ public class NovoPedidoUI extends javax.swing.JFrame {
     private void btn_concluirpedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_concluirpedidoActionPerformed
         Pedido pedido = new Pedido();
         pedido.setNome_cliente(nome_cliente.getText());
+        pedido.setPizza(pizzaria.getCardapio_pizzas(tipo_pizza.getSelectedIndex()));
+        for(int i=0; i<pedido.getPizza().getQuantIngredientes(); i++){
+            Ingrediente ing = pedido.getPizza().getIngrediente(i);
+            pizzaria.getEstoqueIngredientes().pegarIngrediente(ing);// envolver em try-catch
+            //FAZER O MESMO PRA BORDA
+        }
+        if(checkbox_borda.isSelected()){
+            pedido.getPizza().getBorda().setNome(combobox_borda.getItemAt(combobox_borda.getSelectedIndex()));
+        }
+        if(checkbox_acomp.isSelected()){
+            pedido.addAcompanhamento(pizzaria.getAcompanhamentos(combobox_acomp1.getSelectedIndex()+1));
+            pedido.addAcompanhamento(pizzaria.getAcompanhamentos(combobox_acomp2.getSelectedIndex()+1));
+            pedido.addAcompanhamento(pizzaria.getAcompanhamentos(combobox_acomp3.getSelectedIndex()+1));
+        }
+        pedido.setObs(obs.getText());
+            
     }//GEN-LAST:event_btn_concluirpedidoActionPerformed
 
     private void checkbox_acompStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_checkbox_acompStateChanged
@@ -307,9 +342,9 @@ public class NovoPedidoUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_checkbox_acompStateChanged
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
         this.setVisible(false);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btn_cancelarActionPerformed
 
     private void checkbox_bordaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_checkbox_bordaStateChanged
         if(checkbox_borda.isSelected()){
@@ -321,9 +356,14 @@ public class NovoPedidoUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_checkbox_bordaStateChanged
 
+    private void combobox_acomp3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combobox_acomp3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_combobox_acomp3ActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_cancelar;
     private javax.swing.JButton btn_concluirpedido;
     private javax.swing.JCheckBox checkbox_acomp;
     private javax.swing.JCheckBox checkbox_borda;
@@ -331,7 +371,6 @@ public class NovoPedidoUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> combobox_acomp2;
     private javax.swing.JComboBox<String> combobox_acomp3;
     private javax.swing.JComboBox<String> combobox_borda;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

@@ -188,11 +188,12 @@ public class MenuPrincipalUI extends javax.swing.JFrame {
 
     private void btn_novopedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_novopedidoActionPerformed
 
-        new NovoPedidoUI().setVisible(true);
+        new NovoPedidoUI(pizzaria).setVisible(true);
     }//GEN-LAST:event_btn_novopedidoActionPerformed
 
     private void btn_estoqueingredientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_estoqueingredientesActionPerformed
-        new EstoqueIngredientesUI().setVisible(true);
+
+        new EstoqueIngredientesUI(pizzaria).setVisible(true);
     }//GEN-LAST:event_btn_estoqueingredientesActionPerformed
 
     /**

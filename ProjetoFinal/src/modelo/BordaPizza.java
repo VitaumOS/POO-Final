@@ -8,19 +8,21 @@ package modelo;
  *
  * @author Vitor
  */
-public class Ingrediente {
+public class BordaPizza{
     
     private String nome;
-    
-    public Ingrediente(String nome){
-        
+
+    public BordaPizza(String nome) {
         this.nome = nome;
     }
 
     public String getNome() {
         return nome;
     }
-    
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
     
     
 }
