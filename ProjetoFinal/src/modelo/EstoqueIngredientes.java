@@ -52,5 +52,9 @@ public class EstoqueIngredientes {
     public String pegarNomeIngredientes(int index){
         return tipo_ingrediente.get(index).getNome();
     }
+
+    public void reporEstoqueIngredientes(Ingrediente ingrediente, int quantidade){
+        addIngrediente(ingrediente, quantidade);
+    }
     
 }
