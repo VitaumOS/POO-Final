@@ -326,6 +326,8 @@ public class NovoPedidoUI extends javax.swing.JFrame {
             pedido.addAcompanhamento(pizzaria.getAcompanhamentos(combobox_acomp3.getSelectedIndex()+1));
         }
         pedido.setObs(obs.getText());
+        
+        
             
     }//GEN-LAST:event_btn_concluirpedidoActionPerformed
 

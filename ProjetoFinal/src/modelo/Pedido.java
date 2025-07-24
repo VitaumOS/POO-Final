@@ -27,7 +27,8 @@ public class Pedido {
         
         acompanhamentos = new ArrayList<>();
     }
-
+    
+    
     public String getNome_cliente() {
         return nome_cliente;
     }
@@ -55,6 +56,14 @@ public class Pedido {
     public void addAcompanhamento(Acompanhamento acomp){
         
         acompanhamentos.add(acomp);
+    }
+
+    public String getObs() {
+        return obs;
+    }
+
+    public void setObs(String obs) {
+        this.obs = obs;
     }
     
     
