@@ -11,15 +11,56 @@ import java.util.Random;
  * @author Vitor
  */
 public class Pedido {
-    
-    private String nomeCliente;
     private int id;
-    private String pizza;//TODO: String nome_pizza e String borda pizza
+    private String nomeCliente;
+    private String pizza;
     private String borda;
-    private String[] acompanhamentos; //TODO: String acompanhamento
+    private String[] acompanhamentos;
     private String obs;
-    private Random rd;
+    private String dia;
+    private String mes;
     private double valorTotal;
+
+    public Pedido() {
+        
+        Random rd = new Random();
+        id = rd.nextInt(99999); //gera um ID aleatório
+        
+        valorTotal = 0.0;
+        acompanhamentos = new String[3];
+    }
+    
+    public void fazerPedido(String nome_cliente, Pizza pizza, Acompanhamento acomp1, Acompanhamento acomp2, Acompanhamento acomp3, String obs){
+        this.nomeCliente = nome_cliente;
+        this.pizza = pizza.getNome();
+        this.borda = pizza.getBorda().getNome();
+        acompanhamentos[0] = "Nenhum";
+        acompanhamentos[1] = "Nenhum";
+        acompanhamentos[2] = "Nenhum";
+        this.obs = obs;
+        
+        
+        valorTotal+=pizza.getPreco();
+        if(!pizza.getBorda().getNome().equals("Sem Recheio")){
+            valorTotal+=10.0;
+        }
+        if(acomp1!=null){
+            acompanhamentos[0] = acomp1.getNome();
+            valorTotal+=acomp1.getPreco();
+        }
+        if(acomp2!=null){
+            acompanhamentos[1] = acomp2.getNome();
+            valorTotal+=acomp2.getPreco();
+        }
+        if(acomp3!=null){
+            acompanhamentos[2] = acomp3.getNome();
+            valorTotal+=acomp3.getPreco();
+        }        
+    }
+
+    public String getAcompanhamentos(int index) {
+        return acompanhamentos[index];
+    }
 
     public String getNomeCliente() {
         return nomeCliente;
@@ -61,55 +102,28 @@ public class Pedido {
         this.obs = obs;
     }
 
+    public String getDia() {
+        return dia;
+    }
+
+    public void setDia(String dia) {
+        this.dia = dia;
+    }
+
+    public String getMes() {
+        return mes;
+    }
+
+    public void setMes(String mes) {
+        this.mes = mes;
+    }
+
     public double getValorTotal() {
         return valorTotal;
     }
 
     public void setValorTotal(double valorTotal) {
         this.valorTotal = valorTotal;
-    }
-
-    public Pedido() {
-        
-        rd = new Random();
-        id = rd.nextInt(99999); //gera um ID aleatório
-        
-        valorTotal = 0.0;
-        acompanhamentos = new String[3];
-    }
-    
-    public void fazerPedido(String nome_cliente, Pizza pizza, Acompanhamento acomp1, Acompanhamento acomp2, Acompanhamento acomp3, String obs){
-        this.nomeCliente = nome_cliente;
-        this.pizza = pizza.getNome();
-        this.borda = pizza.getBorda().getNome();
-        acompanhamentos[0] = "Nenhum";
-        acompanhamentos[1] = "Nenhum";
-        acompanhamentos[2] = "Nenhum";
-        this.obs = obs;
-        
-        
-        valorTotal+=pizza.getPreco();
-        if(!pizza.getBorda().getNome().equals("Sem Recheio")){
-            valorTotal+=10.0;
-        }
-        if(acomp1!=null){
-            acompanhamentos[0] = acomp1.getNome();
-            valorTotal+=acomp1.getPreco();
-        }
-        if(acomp2!=null){
-            acompanhamentos[1] = acomp2.getNome();
-            valorTotal+=acomp2.getPreco();
-        }
-        if(acomp3!=null){
-            acompanhamentos[2] = acomp3.getNome();
-            valorTotal+=acomp3.getPreco();
-        }
-        
-        
-    }
-
-    public String getAcompanhamentos(int index) {
-        return acompanhamentos[index];
     }
 }
 
