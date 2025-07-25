@@ -12,7 +12,6 @@ import java.util.Scanner;
  * @author Vitor
  */
 public class ManipulaArquivoTexto {
-    
     private String arquivo;
     private Formatter gravador;
     private Scanner leitor;

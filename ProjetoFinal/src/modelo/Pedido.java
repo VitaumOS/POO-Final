@@ -4,7 +4,6 @@
  */
 package modelo;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -64,6 +63,40 @@ public class Pedido {
         
         
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getPizza() {
+        return pizza;
+    }
+
+    public String getBorda() {
+        return borda;
+    }
+
+    public String[] getAcompanhamentos() {
+        return acompanhamentos;
+    }
+
+    public String getObs() {
+        return obs;
+    }
+
+    public Random getRd() {
+        return rd;
+    }
     
-    
+    public double getValorTotal() {
+        return valor_total;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
+
+
+
+    
