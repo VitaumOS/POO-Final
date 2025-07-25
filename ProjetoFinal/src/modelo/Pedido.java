@@ -4,6 +4,7 @@
  */
 package modelo;
 
+import excecoes.FaltouColocarNomeException;
 import java.util.Random;
 
 /**
@@ -17,8 +18,6 @@ public class Pedido {
     private String borda;
     private String[] acompanhamentos;
     private String obs;
-    private String dia;
-    private String mes;
     private double valorTotal;
 
     /**
@@ -44,7 +43,9 @@ public class Pedido {
      * @param acomp3 Terceiro acompanhamento (pode ser null)
      * @param obs Observações especiais do pedido
      */
-    public void fazerPedido(String nome_cliente, Pizza pizza, Acompanhamento acomp1, Acompanhamento acomp2, Acompanhamento acomp3, String obs){
+    public void fazerPedido(String nome_cliente, Pizza pizza, Acompanhamento acomp1, Acompanhamento acomp2, Acompanhamento acomp3, String obs) throws FaltouColocarNomeException{
+        if(nome_cliente.isEmpty())
+            throw new FaltouColocarNomeException();
         this.nomeCliente = nome_cliente;
         this.pizza = pizza.getNome();
         this.borda = pizza.getBorda().getNome();
@@ -71,22 +72,11 @@ public class Pedido {
             valorTotal+=acomp3.getPreco();
 
         }
-        
-        
     }
 
     public String getNomeCliente() {
         return nomeCliente;
     }
-    
-    public void setNomeCliente(String nomeCliente) {
-        this.nomeCliente = nomeCliente;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-    
     public int getId() {
         return id;
     }
@@ -103,13 +93,6 @@ public class Pedido {
     public String getAcompanhamentos(int index) {
         return acompanhamentos[index];
     }
-
-    public void setAcompanhamentos(String acompanhamentos, int index) {
-        this.acompanhamentos[index] = acompanhamentos;
-    }
-    
-
-
     public String getObs() {
         return obs;
     }
@@ -118,22 +101,21 @@ public class Pedido {
         return valorTotal;
     }
 
-        
-    public String getDia() {
-        return dia;
+
+    
+    public void setNomeCliente(String nomeCliente) {
+        this.nomeCliente = nomeCliente;
     }
 
-    public void setDia(String dia) {
-        this.dia = dia;
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    
+    public void setAcompanhamentos(String acompanhamentos, int index) {
+        this.acompanhamentos[index] = acompanhamentos;
     }
 
-    public String getMes() {
-        return mes;
-    }
-
-    public void setMes(String mes) {
-        this.mes = mes;
-    }
 
     public void setValorTotal(double valorTotal) {
         this.valorTotal = valorTotal;

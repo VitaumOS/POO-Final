@@ -7,6 +7,7 @@ package visao;
 import javax.swing.JOptionPane;
 
 import excecoes.EstoqueInsuficienteException;
+import excecoes.FaltouColocarNomeException;
 import modelo.Acompanhamento;
 import modelo.Ingrediente;
 import modelo.Pedido;
@@ -357,45 +358,51 @@ public class NovoPedidoUI extends javax.swing.JFrame {
             acomp2 = pizzaria.getCardapio().getAcompanhamentos(combobox_acomp2.getSelectedIndex()-1);
             acomp3 = pizzaria.getCardapio().getAcompanhamentos(combobox_acomp3.getSelectedIndex()-1);
         }
-        pedido.fazerPedido(nome, pizza, acomp1, acomp2, acomp3, obs.getText());
-        pizzaria.adicionarPedidoAoHistorico(pedido);
-        javax.swing.JOptionPane.showMessageDialog(
-            null, 
-            "Pedido feito com sucesso!\nO Pedido deu um valor de "+pizzaria.converteDoubleReais(pedido.getValorTotal()), 
-            "Pedido completo", 
-            javax.swing.JOptionPane.INFORMATION_MESSAGE
-        );
-
-        // Após consumir ingredientes e fazer o pedido
-        pedido.fazerPedido(nome, pizza, acomp1, acomp2, acomp3, obs.getText());
-        pizzaria.adicionarPedidoAoHistorico(pedido);
+        boolean comNome=true;
         
-        // Adicionar ao diário (persistência)
-        boolean registrouDiario = pizzaria.getGerenciadorDiario().registrarPedido(pedido);
-        
-        // Salvar alterações no estoque
-        boolean salvouEstoque = pizzaria.getGerenciadorEstoque().salvarEstoque();
-        
-        if (registrouDiario && salvouEstoque) {
-            // Mostrar mensagem de sucesso
-            JOptionPane.showMessageDialog(
-                null, 
-                "Pedido feito com sucesso!\nO Pedido deu um valor de "+
-                pizzaria.converteDoubleReais(pedido.getValorTotal()), 
-                "Pedido completo", 
-                JOptionPane.INFORMATION_MESSAGE
+        //Vai verificar se o pedido está sem nome
+        try{
+            pedido.fazerPedido(nome, pizza, acomp1, acomp2, acomp3, obs.getText());
+        }
+        catch(FaltouColocarNomeException ex){ // se tiver sem nome, trata exceção
+            javax.swing.JOptionPane.showMessageDialog(
+                    null, 
+                    ex.getMessage(), 
+                    "Erro", 
+                    javax.swing.JOptionPane.ERROR_MESSAGE
             );
-        } else {
-            // Mostrar mensagem de erro
-            JOptionPane.showMessageDialog(
-                null, 
-                "Erro ao registrar pedido ou salvar estoque.", 
-                "Erro", 
-                JOptionPane.ERROR_MESSAGE
-            );
+            comNome=false;
         }
         
-        this.setVisible(false);
+        //Caso tenha o nome, vai continuar o processo normalmente
+        if(comNome){
+            pizzaria.adicionarPedidoAoHistorico(pedido);
+            // Adicionar ao diário (persistência)
+            boolean registrouDiario = pizzaria.getGerenciadorDiario().registrarPedido(pedido);
+            // Salvar alterações no estoque
+            boolean salvouEstoque = pizzaria.getGerenciadorEstoque().salvarEstoque();
+
+            if (registrouDiario && salvouEstoque) {
+                // Mostrar mensagem de sucesso
+                JOptionPane.showMessageDialog(
+                    null, 
+                    "Pedido feito com sucesso!\nO Pedido deu um valor de "+
+                    pizzaria.converteDoubleReais(pedido.getValorTotal()), 
+                    "Pedido completo", 
+                    JOptionPane.INFORMATION_MESSAGE
+                );
+            } else {
+                // Mostrar mensagem de erro
+                JOptionPane.showMessageDialog(
+                    null, 
+                    "Erro ao registrar pedido ou salvar estoque.", 
+                    "Erro", 
+                    JOptionPane.ERROR_MESSAGE
+                );
+            }
+
+            this.setVisible(false);
+        }
             
     }//GEN-LAST:event_btn_concluirpedidoActionPerformed
 

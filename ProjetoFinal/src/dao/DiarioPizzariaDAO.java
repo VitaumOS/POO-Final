@@ -50,8 +50,6 @@ public class DiarioPizzariaDAO implements ArquivoDAO<Pedido> {
             for (Pedido pedido : pedidos) {
                 StringBuilder linha = new StringBuilder();
                 linha.append(pedido.getId()).append(SEPARADOR_CSV);
-                linha.append(pedido.getDia()).append(SEPARADOR_CSV);
-                linha.append(pedido.getMes()).append(SEPARADOR_CSV);
                 linha.append(pedido.getNomeCliente()).append(SEPARADOR_CSV);
                 linha.append(pedido.getPizza()).append(SEPARADOR_CSV);
                 linha.append(pedido.getBorda()).append(SEPARADOR_CSV);
@@ -98,8 +96,6 @@ public class DiarioPizzariaDAO implements ArquivoDAO<Pedido> {
                     
                     // Configurar os dados do pedido
                     pedido.setId(Integer.parseInt(dados[0].trim()));
-                    pedido.setDia(dados[1].trim());
-                    pedido.setMes(dados[2].trim());
                     pedido.setNomeCliente(dados[3].trim());
                     pedido.setPizza(dados[4].trim());
                     pedido.setBorda(dados[5].trim());

@@ -4,7 +4,8 @@ import excecoes.EstoqueInsuficienteException;
 import java.util.*;
 
 /**
- * Estoque de ingredientes usando ArrayList<Map.Entry<Ingrediente, Integer>>
+ * Estoque de ingredientes usando ArrayList<Map.Entry<Ingrediente, Integer>>.
+ * Ele guarda o ingrente como chave e quantidade do ingrediente como valor
  * @author Vitor
  */
 public class EstoqueIngredientes {
