@@ -12,7 +12,7 @@ import modelo.Pizza;
 import modelo.Pizzaria;
 
 /**
- *
+ * Classe JFrame que irá fazer um novo pedido para o usuário
  * @author Vitor
  */
 public class NovoPedidoUI extends javax.swing.JFrame {
@@ -21,7 +21,9 @@ public class NovoPedidoUI extends javax.swing.JFrame {
     private Pedido pedido;
 
     /**
-     * Creates new form NovoPedido
+     * Cria um novo frame NovoPedidoUI e utiliza o parâmetro 
+     * @param pizzaria
+     * para colocar as opções de pizza, bordas e acompanhamentos
      */
     public NovoPedidoUI(Pizzaria pizzaria) {
         initComponents();
@@ -314,7 +316,10 @@ public class NovoPedidoUI extends javax.swing.JFrame {
     private void checkbox_acompActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkbox_acompActionPerformed
         
     }//GEN-LAST:event_checkbox_acompActionPerformed
-
+    /**
+     * 
+     * @param evt 
+     */
     private void btn_concluirpedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_concluirpedidoActionPerformed
         Pedido pedido = new Pedido();
         String nome = nome_cliente.getText();

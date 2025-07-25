@@ -13,7 +13,7 @@ import modelo.Pizza;
 import modelo.Pizzaria;
 
 /**
- *
+ * Classe JFrame que será a tela principal do sistema de gestão da Pizzaria
  * @author Vitor
  */
 public class MenuPrincipalUI extends javax.swing.JFrame {

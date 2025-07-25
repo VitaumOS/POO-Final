@@ -16,7 +16,6 @@ public class EstoqueIngredientes {
         ingredientes = new ArrayList<>();
     }
 
-  
     
     public EstoqueIngredientes(ArrayList<Map.Entry<Ingrediente,Integer>> ingredientes){
         this.ingredientes = ingredientes;
