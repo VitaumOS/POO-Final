@@ -15,7 +15,6 @@ import modelo.Pedido;
  * @author Caioba
  */
 public class DiarioPizzariaDAO implements ArquivoDAO<Pedido> {
-    private static final String SEPARADOR_CSV = ",";
     private static final String SEPARADOR_CSV = ";";
     private final String caminhoArquivo;
     
@@ -59,8 +58,12 @@ public class DiarioPizzariaDAO implements ArquivoDAO<Pedido> {
                 linha.append(pedido.getBorda()).append(SEPARADOR_CSV);
                 
                 // Adiciona os acompanhamentos (pode ser "Nenhum")
+<<<<<<< HEAD
 
                 for (int i=0; i<3; i++) {
+=======
+                for (int i = 0; i < 3; i++) {
+>>>>>>> 39c8d26bd1a6e0e86167be16695076fd6cad01e7
                     linha.append(pedido.getAcompanhamentos(i)).append(SEPARADOR_CSV);
                 }
                 
@@ -96,12 +99,6 @@ public class DiarioPizzariaDAO implements ArquivoDAO<Pedido> {
                     
                     // Configurar os dados do pedido
                     pedido.setId(Integer.parseInt(dados[0].trim()));
-                    pedido.setNomeCliente(dados[2].trim());
-                    
-                    //TODO: Aqui precisaria implementar os outros setters no Pedido
-                    //TODO: Isso depende da implementação completa da classe Pedido
-
-                    //dia;mes;id;nome_cliente;pizza;borda;acomponhamentos;obs;valorTotal
                     pedido.setDia(dados[1].trim());
                     pedido.setMes(dados[2].trim());
                     pedido.setNomeCliente(dados[3].trim());

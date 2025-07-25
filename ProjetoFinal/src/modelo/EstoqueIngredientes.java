@@ -9,17 +9,14 @@ import java.util.*;
  */
 public class EstoqueIngredientes {
 
+
     private final ArrayList<Map.Entry<Ingrediente, Integer>> ingredientes;
 
     public EstoqueIngredientes() {
         ingredientes = new ArrayList<>();
-    private HashMap<String, Integer> ingredientes;
-    private ArrayList<Ingrediente> tiposIngrediente;
-    
-    public EstoqueIngredientes(){
-        ingredientes = new HashMap<>();
-        tiposIngrediente = new ArrayList<>();
     }
+
+  
     
     public EstoqueIngredientes(ArrayList<Map.Entry<Ingrediente,Integer>> ingredientes){
         this.ingredientes = ingredientes;

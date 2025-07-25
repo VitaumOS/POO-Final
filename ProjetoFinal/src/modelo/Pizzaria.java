@@ -47,8 +47,6 @@ public class Pizzaria {
         Ingrediente ing14 = new Ingrediente("Milho");
         Ingrediente ing15 = new Ingrediente("Orégano");
         
-        
-
         pizza1.setIngrediente(ing1); 
         pizza1.setIngrediente(ing2); 
         pizza1.setIngrediente(ing7); 
