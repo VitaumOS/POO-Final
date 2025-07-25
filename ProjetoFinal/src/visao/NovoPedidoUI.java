@@ -31,14 +31,14 @@ public class NovoPedidoUI extends javax.swing.JFrame {
         initComponents();
         
         this.pizzaria = pizzaria;
-        for(int i=0; i<pizzaria.getQuantPizza(); i++)
-            tipo_pizza.addItem(pizzaria.getCardapio_pizzas(i).getNome()+" ("+pizzaria.converteDoubleReais(pizzaria.getCardapio_pizzas(i).getPreco())+")");
-        for(int i=0; i<pizzaria.getQuantBordaPizza(); i++){
-            combobox_borda.addItem(pizzaria.getBordaPizza(i).getNome());
+        for(int i=0; i<pizzaria.getCardapio().getQuantPizza(); i++)
+            tipo_pizza.addItem(pizzaria.getCardapio().getCardapio_pizzas(i).getNome()+" ("+pizzaria.converteDoubleReais(pizzaria.getCardapio().getCardapio_pizzas(i).getPreco())+")");
+        for(int i=0; i<pizzaria.getCardapio().getQuantBordaPizza(); i++){
+            combobox_borda.addItem(pizzaria.getCardapio().getBordaPizza(i).getNome());
 
         }
-        for(int i=0; i<pizzaria.getQuantAcompanhamentos(); i++){
-            String aux = pizzaria.getAcompanhamentos(i).getNome()+" ("+pizzaria.converteDoubleReais(pizzaria.getAcompanhamentos(i).getPreco())+")";
+        for(int i=0; i<pizzaria.getCardapio().getQuantAcompanhamentos(); i++){
+            String aux = pizzaria.getCardapio().getAcompanhamentos(i).getNome()+" ("+pizzaria.converteDoubleReais(pizzaria.getCardapio().getAcompanhamentos(i).getPreco())+")";
             combobox_acomp1.addItem(aux);
             combobox_acomp2.addItem(aux);
             combobox_acomp3.addItem(aux);
@@ -325,7 +325,7 @@ public class NovoPedidoUI extends javax.swing.JFrame {
     private void btn_concluirpedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_concluirpedidoActionPerformed
         Pedido pedido = new Pedido();
         String nome = nome_cliente.getText();
-        Pizza pizza = pizzaria.getCardapio_pizzas(tipo_pizza.getSelectedIndex());
+        Pizza pizza = pizzaria.getCardapio().getCardapio_pizzas(tipo_pizza.getSelectedIndex());
         Acompanhamento acomp1 = null;
         Acompanhamento acomp2 = null;
         Acompanhamento acomp3 = null;
@@ -353,9 +353,9 @@ public class NovoPedidoUI extends javax.swing.JFrame {
         }
         
         if(checkbox_acomp.isSelected()){
-            acomp1 = pizzaria.getAcompanhamentos(combobox_acomp1.getSelectedIndex()-1);
-            acomp2 = pizzaria.getAcompanhamentos(combobox_acomp2.getSelectedIndex()-1);
-            acomp3 = pizzaria.getAcompanhamentos(combobox_acomp3.getSelectedIndex()-1);
+            acomp1 = pizzaria.getCardapio().getAcompanhamentos(combobox_acomp1.getSelectedIndex()-1);
+            acomp2 = pizzaria.getCardapio().getAcompanhamentos(combobox_acomp2.getSelectedIndex()-1);
+            acomp3 = pizzaria.getCardapio().getAcompanhamentos(combobox_acomp3.getSelectedIndex()-1);
         }
         pedido.fazerPedido(nome, pizza, acomp1, acomp2, acomp3, obs.getText());
         pizzaria.adicionarPedidoAoHistorico(pedido);
