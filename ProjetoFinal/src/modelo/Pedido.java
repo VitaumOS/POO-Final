@@ -62,6 +62,10 @@ public class Pedido {
         return acompanhamentos[index];
     }
 
+    public void setAcompanhamentos(String[] acompanhamentos) {
+        this.acompanhamentos = acompanhamentos;
+    }
+
     public String getNomeCliente() {
         return nomeCliente;
     }
