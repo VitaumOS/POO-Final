@@ -21,6 +21,54 @@ public class Pedido {
     private Random rd;
     private double valorTotal;
 
+    public String getNomeCliente() {
+        return nomeCliente;
+    }
+
+    public void setNomeCliente(String nomeCliente) {
+        this.nomeCliente = nomeCliente;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getPizza() {
+        return pizza;
+    }
+
+    public void setPizza(String pizza) {
+        this.pizza = pizza;
+    }
+
+    public String getBorda() {
+        return borda;
+    }
+
+    public void setBorda(String borda) {
+        this.borda = borda;
+    }
+
+    public String getObs() {
+        return obs;
+    }
+
+    public void setObs(String obs) {
+        this.obs = obs;
+    }
+
+    public double getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(double valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+
     public Pedido() {
         
         rd = new Random();
@@ -60,38 +108,9 @@ public class Pedido {
         
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public String getPizza() {
-        return pizza;
-    }
-
-    public String getBorda() {
-        return borda;
-    }
-
     public String getAcompanhamentos(int index) {
         return acompanhamentos[index];
     }
-
-    public String getObs() {
-        return obs;
-    }
-
-    public Random getRd() {
-        return rd;
-    }
-    
-    public double getValorTotal() {
-        return valorTotal;
-    }
-
-    public String getNomeCliente() {
-        return nomeCliente;
-    }
-
 }
 
 

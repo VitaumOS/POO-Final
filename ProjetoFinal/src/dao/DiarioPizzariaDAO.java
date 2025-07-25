@@ -17,7 +17,7 @@ import modelo.Pedido;
  * @author Caioba
  */
 public class DiarioPizzariaDAO implements ArquivoDAO<Pedido> {
-    private static final String SEPARADOR_CSV = ",";
+    private static final String SEPARADOR_CSV = ";";
     private final String caminhoArquivo;
     private static final SimpleDateFormat FORMAT = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
     
