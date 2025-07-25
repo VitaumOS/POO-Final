@@ -101,6 +101,8 @@ public class DiarioPizzariaDAO implements ArquivoDAO<Pedido> {
                     
                     //TODO: Aqui precisaria implementar os outros setters no Pedido
                     //TODO: Isso depende da implementação completa da classe Pedido
+
+                    //dia;mes;id;nome_cliente;pizza;borda;acomponhamentos;obs;valorTotal
                     
                     pedidos.add(pedido);
                 }
