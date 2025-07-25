@@ -47,7 +47,8 @@ public class IngredienteDAO implements ArquivoDAO<Map.Entry<Ingrediente, Integer
             }
         }
         catch(IOException e){
-            
+            System.err.println("Erro ao criar diretório para o arquivo.");
+            e.printStackTrace();
         }
     }
 
@@ -79,8 +80,9 @@ public class IngredienteDAO implements ArquivoDAO<Map.Entry<Ingrediente, Integer
                     resultado.add(map.entrySet().iterator().next());
                 }
             }
-        }
-        catch(IOException e){
+        } catch(IOException e) {
+            System.err.println("Erro ao ler o arquivo.");
+            e.printStackTrace();
         }
         return resultado;
     }
