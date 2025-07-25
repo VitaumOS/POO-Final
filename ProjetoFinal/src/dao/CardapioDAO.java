@@ -20,12 +20,41 @@ import modelo.Pizza;
  * @author Vitor
  */
 public class CardapioDAO {
+        
+    /**
+     * Tenta diferentes possibilidades de caminho
+     * 
+     */
+    private String obterCaminhoArquivo() {
+        String[] possiveisCaminhos = {
+            "src/resources/cardapio.csv",
+            "src\\resources\\cardapio.csv",
+            "./src/resources/cardapio.csv",
+            "ProjetoFinal/src/resources/cardapio.csv",
+            System.getProperty("user.dir") + "/src/resources/cardapio.csv",
+            System.getProperty("user.dir") + "\\src\\resources\\cardapio.csv"
+        };
+        
+        for (String caminho : possiveisCaminhos) {
+            java.io.File arquivo = new java.io.File(caminho);
+            if (arquivo.exists()) {
+                return caminho;
+            }
+        }
+        
+        // Se não encontrou, usa o caminho padrão
+        String caminhoDefault = "src/resources/cardapio.csv";
+        return caminhoDefault;
+    }
+    
     /**
      * Salva um objeto Cardapio em arquivo
      * @param cardapio objeto a ser salvo
      */
     public void salvar(Cardapio cardapio) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src\\resources\\cardapio.csv"))) {
+        String caminhoArquivo = obterCaminhoArquivo();
+        
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(caminhoArquivo))) {
             writer.write("[TIPO];[NOME];[PREÇO]");
             writer.newLine();
 
@@ -58,8 +87,9 @@ public class CardapioDAO {
      */
     public Cardapio carregar() {
         Cardapio cardapio = new Cardapio();
+        String caminhoArquivo = obterCaminhoArquivo();
 
-        try (BufferedReader reader = new BufferedReader(new FileReader("src\\resources\\cardapio.csv"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(caminhoArquivo))) {
             String linha;
 
             while ((linha = reader.readLine()) != null) {
