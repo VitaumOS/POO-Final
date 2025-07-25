@@ -6,6 +6,8 @@ package modelo;
 
 import dao.IngredienteDAO;
 import java.util.ArrayList;
+import services.GerenciadorDiario;
+import services.GerenciadorEstoque;
 
 /**
  *
@@ -18,7 +20,10 @@ public class Pizzaria {
     private ArrayList<BordaPizza> bordas;
     private HistoricoPedido historicopedido;
     private EstoqueIngredientes estoque;
-    
+
+    private GerenciadorEstoque gerenciadorEstoque;
+    private GerenciadorDiario gerenciadorDiario;
+
     public Pizzaria(){
         
         Pizza pizza1 = new Pizza("Pizza de Calabresa", 30.0);
@@ -130,9 +135,16 @@ public class Pizzaria {
         historicopedido = new HistoricoPedido();
         
         
+        estoque = new EstoqueIngredientes();
 
+        String caminhoIngredientes = "src\\resources\\ingredientes.csv";
+        String caminhoDiario = "src\\resources\\diarioPizzaria.csv";
 
+        this.gerenciadorEstoque = new GerenciadorEstoque(caminhoIngredientes, estoque);
+        this.gerenciadorDiario = new GerenciadorDiario(caminhoDiario);
 
+        gerenciadorEstoque.carregarEstoque();
+        gerenciadorDiario.carregarHistorico();
     }
 
     public Pizza getCardapio_pizzas(int index) {
@@ -176,5 +188,21 @@ public class Pizzaria {
     
     public String converteDoubleReais(double valor){
         return "R$"+valor+"0";
+    }
+
+    public GerenciadorEstoque getGerenciadorEstoque() {
+        return gerenciadorEstoque;
+    }
+
+    public GerenciadorDiario getGerenciadorDiario() {
+        return gerenciadorDiario;
+    }
+
+    public boolean salvarEstoque() {
+        return gerenciadorEstoque.salvarEstoque();
+    }
+
+    public boolean registrarPedidoDiario(Pedido pedido) {
+        return gerenciadorDiario.registrarPedido(pedido);
     }
 }

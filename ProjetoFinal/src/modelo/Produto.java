@@ -5,9 +5,9 @@
 package modelo;
 
 /**
- *
+ * Classe pai de todos os demais produtos 
  * @author Vitor
- */
+**/
 public abstract class Produto {
     
     protected String nome;
