@@ -1,7 +1,6 @@
 package services;
 
 import dao.DiarioPizzariaDAO;
-import java.io.IOException;
 import java.util.ArrayList;
 import modelo.Pedido;
 
@@ -28,20 +27,15 @@ public class GerenciadorDiario {
      * @return true se registrou com sucesso, false caso contrário
      */
     public boolean registrarPedido(Pedido pedido) {
-        try {
-            // Adiciona o pedido à lista
-            pedidosDiarios.add(pedido);
-            
-            // Salva apenas o novo pedido (modo append)
-            ArrayList<Pedido> novoPedido = new ArrayList<>();
-            novoPedido.add(pedido);
-            diarioDAO.salvar(novoPedido);
-            
-            return true;
-        } catch (IOException e) {
-            System.err.println("Erro ao registrar pedido: " + e.getMessage());
-            return false;
-        }
+        // Adiciona o pedido à lista
+        pedidosDiarios.add(pedido);
+        
+        // Salva apenas o novo pedido (modo append)
+        ArrayList<Pedido> novoPedido = new ArrayList<>();
+        novoPedido.add(pedido);
+        diarioDAO.salvar(novoPedido);
+        
+        return true;
     }
     
     /**
@@ -49,13 +43,8 @@ public class GerenciadorDiario {
      * @return true se carregou com sucesso, false caso contrário
      */
     public boolean carregarHistorico() {
-        try {
-            pedidosDiarios = diarioDAO.carregar();
-            return true;
-        } catch (IOException e) {
-            System.err.println("Erro ao carregar histórico: " + e.getMessage());
-            return false;
-        }
+        pedidosDiarios = diarioDAO.carregar();
+        return true;
     }
     
     /**
