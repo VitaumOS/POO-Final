@@ -95,9 +95,8 @@ public class EstoqueIngredientesUI extends javax.swing.JFrame {
         });
         tabela_ingredientes.setToolTipText("");
         tabela_ingredientes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tabela_ingredientes.setRowHeight(27);
         tabela_ingredientes.setShowGrid(true);
-        tabela_ingredientes.setShowHorizontalLines(true);
-        tabela_ingredientes.setShowVerticalLines(true);
         jScrollPane3.setViewportView(tabela_ingredientes);
 
         btn_cancelar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N

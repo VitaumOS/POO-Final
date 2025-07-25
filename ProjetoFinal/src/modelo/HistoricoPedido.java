@@ -24,12 +24,17 @@ public class HistoricoPedido {
         }
     }
     
-    public ArrayList<Pedido> getPedidos() {
-        return pedidos;
+    public Pedido getPedidos(int index) {
+        return pedidos.get(index);
     }
 
     public void setPedidos(ArrayList<Pedido> pedidos) {
         this.pedidos = pedidos;
+    }
+    
+    public int getQuantPedidos(){
+        
+        return pedidos.size();
     }
     
 }

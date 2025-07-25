@@ -72,8 +72,8 @@ public class Pedido {
         return borda;
     }
 
-    public String[] getAcompanhamentos() {
-        return acompanhamentos;
+    public String getAcompanhamentos(int index) {
+        return acompanhamentos[index];
     }
 
     public String getObs() {
@@ -88,17 +88,10 @@ public class Pedido {
         return valorTotal;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getNomeCliente() {
         return nomeCliente;
     }
 
-    public void setNomeCliente(String nome_cliente) {
-        this.nomeCliente = nome_cliente;
-    }
 }
 
 

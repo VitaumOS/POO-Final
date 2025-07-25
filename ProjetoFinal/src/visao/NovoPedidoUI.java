@@ -346,6 +346,7 @@ public class NovoPedidoUI extends javax.swing.JFrame {
             acomp3 = pizzaria.getAcompanhamentos(combobox_acomp3.getSelectedIndex()-1);
         }
         pedido.fazerPedido(nome, pizza, acomp1, acomp2, acomp3, obs.getText());
+        pizzaria.adicionarPedidoAoHistorico(pedido);
         javax.swing.JOptionPane.showMessageDialog(
             null, 
             "Pedido feito com sucesso!\nO Pedido deu um valor de R$"+pedido.getValorTotal(), 

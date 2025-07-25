@@ -4,6 +4,7 @@
  */
 package visao;
 
+import modelo.Pedido;
 import modelo.Pizzaria;
 
 /**
@@ -17,6 +18,24 @@ public class ResumoDiaUI extends javax.swing.JFrame {
      */
     public ResumoDiaUI(Pizzaria pizzaria) {
         initComponents();
+        
+        for(int i=0; i<pizzaria.getHistoricoPedido().getQuantPedidos(); i++){
+            Pedido pedido = pizzaria.getHistoricoPedido().getPedidos(i);
+            String[] aux = new String[3];
+            for(int j=0; j<3; j++){
+                if(!pedido.getAcompanhamentos(j).equals("Nenhum")){
+                    aux[j] = pedido.getAcompanhamentos(j);
+                }
+                else
+                    aux[j]="";
+            }
+            String acompanhamento = aux[0]+" "+aux[1]+" " + aux[2];
+            tabela_resumodia.setValueAt(pedido.getNomeCliente(), i, 0);
+            tabela_resumodia.setValueAt(pedido.getPizza(), i, 1);
+            tabela_resumodia.setValueAt(pedido.getBorda(), i, 2);
+            tabela_resumodia.setValueAt(acompanhamento, i, 3);
+            tabela_resumodia.setValueAt("R$"+pedido.getValorTotal()+"0", i, 4);    
+        }
     }
 
     /**
@@ -31,7 +50,7 @@ public class ResumoDiaUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabela_resumodia = new javax.swing.JTable();
         btn_cancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -39,7 +58,7 @@ public class ResumoDiaUI extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel1.setText("Resumo do Dia");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabela_resumodia.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -66,8 +85,25 @@ public class ResumoDiaUI extends javax.swing.JFrame {
             new String [] {
                 "Nome do Cliente", "Pizza", "Borda Recheada", "Acompanhamentos", "Valor Total"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                true, false, true, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabela_resumodia.setIntercellSpacing(new java.awt.Dimension(1, 1));
+        tabela_resumodia.setRowHeight(30);
+        jScrollPane1.setViewportView(tabela_resumodia);
 
         btn_cancelar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btn_cancelar.setText("Cancelar");
@@ -82,19 +118,18 @@ public class ResumoDiaUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(191, 191, 191)
-                            .addComponent(jLabel1)
-                            .addGap(183, 183, 183)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(249, 249, 249)
-                        .addComponent(btn_cancelar)))
+                            .addComponent(jLabel1))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(249, 249, 249)
+                            .addComponent(btn_cancelar))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(21, 21, 21)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -105,8 +140,8 @@ public class ResumoDiaUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_cancelar)
                 .addContainerGap(41, Short.MAX_VALUE))
         );
@@ -127,6 +162,6 @@ public class ResumoDiaUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tabela_resumodia;
     // End of variables declaration//GEN-END:variables
 }
