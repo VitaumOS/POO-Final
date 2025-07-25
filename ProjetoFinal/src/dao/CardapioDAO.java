@@ -48,7 +48,7 @@ public class CardapioDAO {
             }
 
         } catch (IOException e) {
-
+            e.printStackTrace();
         }
     }
 
@@ -86,6 +86,7 @@ public class CardapioDAO {
                 }
             }
         } catch (IOException e) {
+            e.printStackTrace();
         }
 
         return cardapio;

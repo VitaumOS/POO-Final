@@ -5,22 +5,27 @@
 package modelo;
 
 /**
- *
+ * Representa um ingrediente utilizado em pizzas.
  * @author Vitor
  */
 public class Ingrediente {
     
+    /** Nome do ingrediente. */
     private String nome;
     
+    /**
+     * Cria um novo ingrediente com o nome especificado.
+     * @param nome Nome do ingrediente.
+     */
     public Ingrediente(String nome){
-        
         this.nome = nome;
     }
 
+    /**
+     * Retorna o nome do ingrediente.
+     * @return nome do ingrediente.
+     */
     public String getNome() {
         return nome;
     }
-    
-    
-    
 }
