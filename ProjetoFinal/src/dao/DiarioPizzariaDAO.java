@@ -32,7 +32,7 @@ public class DiarioPizzariaDAO implements ArquivoDAO<Pedido> {
     }
     
     @Override
-    public void salvar(ArrayList<Pedido> pedidos) throws IOException {
+    public void salvar(ArrayList<Pedido> pedidos) {
         // Verifica se o arquivo já existe para decidir se escreve o cabeçalho
         boolean arquivoExiste = new File(caminhoArquivo).exists();
         
@@ -70,11 +70,14 @@ public class DiarioPizzariaDAO implements ArquivoDAO<Pedido> {
                 writer.write(linha.toString());
                 writer.newLine();
             }
+        } catch (IOException e) {
+            System.err.println("Erro ao criar diretório para o arquivo.");
+            e.printStackTrace();
         }
     }
     
     @Override
-    public ArrayList<Pedido> carregar() throws IOException {
+    public ArrayList<Pedido> carregar() {
         ArrayList<Pedido> pedidos = new ArrayList<>();
         File arquivo = new File(caminhoArquivo);
         
@@ -108,6 +111,9 @@ public class DiarioPizzariaDAO implements ArquivoDAO<Pedido> {
                     pedidos.add(pedido);
                 }
             }
+        } catch (IOException e) {
+            System.err.println("Erro ao ler o arquivo.");
+            e.printStackTrace();
         }
         
         return pedidos;
