@@ -1,6 +1,7 @@
 package services;
 
 import dao.IngredienteDAO;
+import excecoes.EstoqueInsuficienteException;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Map;
@@ -106,9 +107,8 @@ public class GerenciadorEstoque {
             for (int i = 0; i < Math.abs(diferenca); i++) {
                 try {
                     estoque.consumirIngrediente(ing);
-                } catch (Exception e) {
-                    // Não deveria acontecer, já que estamos checando a quantidade
-                    return false;
+                } catch (EstoqueInsuficienteException e) {
+                    e.printStackTrace();
                 }
             }
         }
