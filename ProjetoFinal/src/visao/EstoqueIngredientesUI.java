@@ -67,11 +67,6 @@ public class EstoqueIngredientesUI extends javax.swing.JFrame {
                 {null, null},
                 {null, null},
                 {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
                 {null, null}
             },
             new String [] {
@@ -95,7 +90,7 @@ public class EstoqueIngredientesUI extends javax.swing.JFrame {
         });
         tabela_ingredientes.setToolTipText("");
         tabela_ingredientes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        tabela_ingredientes.setRowHeight(27);
+        tabela_ingredientes.setRowHeight(31);
         tabela_ingredientes.setShowGrid(true);
         jScrollPane3.setViewportView(tabela_ingredientes);
 

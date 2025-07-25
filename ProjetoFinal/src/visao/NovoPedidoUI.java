@@ -28,13 +28,13 @@ public class NovoPedidoUI extends javax.swing.JFrame {
         
         this.pizzaria = pizzaria;
         for(int i=0; i<pizzaria.getQuantPizza(); i++)
-            tipo_pizza.addItem(pizzaria.getCardapio_pizzas(i).getNome()+" (R$"+pizzaria.getCardapio_pizzas(i).getPreco()+")");
+            tipo_pizza.addItem(pizzaria.getCardapio_pizzas(i).getNome()+" ("+pizzaria.converteDoubleReais(pizzaria.getCardapio_pizzas(i).getPreco())+")");
         for(int i=0; i<pizzaria.getQuantBordaPizza(); i++){
             combobox_borda.addItem(pizzaria.getBordaPizza(i).getNome());
 
         }
         for(int i=0; i<pizzaria.getQuantAcompanhamentos(); i++){
-            String aux = pizzaria.getAcompanhamentos(i).getNome()+" (R$"+ pizzaria.getAcompanhamentos(i).getPreco()+")";
+            String aux = pizzaria.getAcompanhamentos(i).getNome()+" ("+pizzaria.converteDoubleReais(pizzaria.getAcompanhamentos(i).getPreco())+")";
             combobox_acomp1.addItem(aux);
             combobox_acomp2.addItem(aux);
             combobox_acomp3.addItem(aux);
@@ -152,10 +152,15 @@ public class NovoPedidoUI extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel9.setText("Borda Recheada");
 
-        checkbox_borda.setText("Sim (Preço padrão de R$ 10,00)");
+        checkbox_borda.setText("Sim (Preço padrão de R$10.00)");
         checkbox_borda.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 checkbox_bordaStateChanged(evt);
+            }
+        });
+        checkbox_borda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkbox_bordaActionPerformed(evt);
             }
         });
 
@@ -326,7 +331,7 @@ public class NovoPedidoUI extends javax.swing.JFrame {
             
             try{
                 Ingrediente ing = pizza.getIngrediente(i);
-                pizzaria.getEstoque().pegarIngrediente(ing);
+                pizzaria.getEstoque().consumirIngrediente(ing);
             }
             catch(EstoqueInsuficienteException ex){
                 int aux = i-1;
@@ -349,7 +354,7 @@ public class NovoPedidoUI extends javax.swing.JFrame {
         pizzaria.adicionarPedidoAoHistorico(pedido);
         javax.swing.JOptionPane.showMessageDialog(
             null, 
-            "Pedido feito com sucesso!\nO Pedido deu um valor de R$"+pedido.getValorTotal(), 
+            "Pedido feito com sucesso!\nO Pedido deu um valor de "+pizzaria.converteDoubleReais(pedido.getValorTotal()), 
             "Pedido completo", 
             javax.swing.JOptionPane.INFORMATION_MESSAGE
         );
@@ -386,6 +391,10 @@ public class NovoPedidoUI extends javax.swing.JFrame {
     private void combobox_acomp3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combobox_acomp3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_combobox_acomp3ActionPerformed
+
+    private void checkbox_bordaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkbox_bordaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_checkbox_bordaActionPerformed
 
     
 

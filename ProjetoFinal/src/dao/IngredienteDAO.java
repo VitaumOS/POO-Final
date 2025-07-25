@@ -35,7 +35,7 @@ public class IngredienteDAO implements ArquivoDAO<Map.Entry<Ingrediente, Integer
     }
     
     @Override
-    public void salvar(ArrayList<Map.Entry<Ingrediente, Integer>> objetos) throws IOException {
+    public void salvar(ArrayList<Map.Entry<Ingrediente, Integer>> objetos){
         try (BufferedWriter wr = new BufferedWriter(new FileWriter(caminhoArquivo))) {
             // Escreve o cabeçalho
             wr.write("nome" + SEPARADOR_CSV + "quantidade");
@@ -47,10 +47,13 @@ public class IngredienteDAO implements ArquivoDAO<Map.Entry<Ingrediente, Integer
                 wr.newLine();
             }
         }
+        catch(IOException e){
+            
+        }
     }
 
     @Override
-    public ArrayList<Map.Entry<Ingrediente, Integer>> carregar() throws IOException {
+    public ArrayList<Map.Entry<Ingrediente, Integer>> carregar() {
         ArrayList<Map.Entry<Ingrediente, Integer>> resultado = new ArrayList<>();
         File arquivo = new File(caminhoArquivo);
         
@@ -78,7 +81,8 @@ public class IngredienteDAO implements ArquivoDAO<Map.Entry<Ingrediente, Integer
                 }
             }
         }
-        
+        catch(IOException e){
+        }
         return resultado;
     }
 }

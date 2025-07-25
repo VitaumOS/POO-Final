@@ -60,6 +60,16 @@ public class Pedido {
         
     }
 
+    public void setNomeCliente(String nomeCliente) {
+        this.nomeCliente = nomeCliente;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    
+    
     public int getId() {
         return id;
     }
@@ -80,9 +90,6 @@ public class Pedido {
         return obs;
     }
 
-    public Random getRd() {
-        return rd;
-    }
     
     public double getValorTotal() {
         return valorTotal;

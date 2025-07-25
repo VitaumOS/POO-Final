@@ -362,10 +362,11 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="checkbox_borda">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Sim (Pre&#xe7;o padr&#xe3;o de R$ 10,00)"/>
+            <Property name="text" type="java.lang.String" value="Sim (Pre&#xe7;o padr&#xe3;o de R$10.00)"/>
           </Properties>
           <Events>
             <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="checkbox_bordaStateChanged"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkbox_bordaActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="combobox_borda">

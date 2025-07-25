@@ -60,9 +60,9 @@ public class DiarioPizzariaDAO implements ArquivoDAO<Pedido> {
                 linha.append(pedido.getBorda()).append(SEPARADOR_CSV);
                 
                 // Adiciona os acompanhamentos (pode ser "Nenhum")
-                String[] acomps = pedido.getAcompanhamentos();
-                for (String acomp : acomps) {
-                    linha.append(acomp).append(SEPARADOR_CSV);
+
+                for (int i=0; i<3; i++) {
+                    linha.append(pedido.getAcompanhamentos(i)).append(SEPARADOR_CSV);
                 }
                 
                 // Adiciona observação e valor total

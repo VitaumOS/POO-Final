@@ -4,6 +4,7 @@
  */
 package modelo;
 
+import dao.IngredienteDAO;
 import java.util.ArrayList;
 
 /**
@@ -27,6 +28,9 @@ public class Pizzaria {
         Pizza pizza5 = new Pizza("Pizza Quatro Queijos", 34.0);
         Pizza pizza6 = new Pizza("Pizza Vegetariana", 29.0);
         
+        IngredienteDAO ingDAO = new IngredienteDAO("src\\resources\\ingredientes.csv");
+        estoque = new EstoqueIngredientes(ingDAO.carregar());
+        
         Ingrediente ing1 = new Ingrediente("Calabresa");
         Ingrediente ing2 = new Ingrediente("Mussarela");
         Ingrediente ing3 = new Ingrediente("Frango");
@@ -43,23 +47,7 @@ public class Pizzaria {
         Ingrediente ing14 = new Ingrediente("Milho");
         Ingrediente ing15 = new Ingrediente("Orégano");
         
-        estoque = new EstoqueIngredientes();
         
-        estoque.addIngrediente(ing1, 40);
-        estoque.addIngrediente(ing2, 100);
-        estoque.addIngrediente(ing3, 35);
-        estoque.addIngrediente(ing4, 30);
-        estoque.addIngrediente(ing5, 25);
-        estoque.addIngrediente(ing6, 20);
-        estoque.addIngrediente(ing7, 40);
-        estoque.addIngrediente(ing8, 40);
-        estoque.addIngrediente(ing9, 15);
-        estoque.addIngrediente(ing10, 15);
-        estoque.addIngrediente(ing11, 15);
-        estoque.addIngrediente(ing12, 30);
-        estoque.addIngrediente(ing13, 25);
-        estoque.addIngrediente(ing14, 35);
-        estoque.addIngrediente(ing15, 100);
 
         pizza1.setIngrediente(ing1); 
         pizza1.setIngrediente(ing2); 
@@ -142,6 +130,10 @@ public class Pizzaria {
         bordas.add(b5);
         
         historicopedido = new HistoricoPedido();
+        
+        
+
+
 
     }
 
@@ -182,5 +174,9 @@ public class Pizzaria {
     
     public HistoricoPedido getHistoricoPedido() {
         return historicopedido;
+    }
+    
+    public String converteDoubleReais(double valor){
+        return "R$"+valor+"0";
     }
 }
