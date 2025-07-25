@@ -16,12 +16,14 @@ import modelo.Cardapio;
 import modelo.Pizza;
 
 /**
- *
+ * Classe responsável por persistir o cardápio
  * @author Vitor
  */
-public class CardapioDAO{
-
-
+public class CardapioDAO {
+    /**
+     * Salva um objeto Cardapio em arquivo
+     * @param cardapio objeto a ser salvo
+     */
     public void salvar(Cardapio cardapio) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src\\resources\\cardapio.csv"))) {
             writer.write("[TIPO];[NOME];[PREÇO]");
@@ -49,6 +51,11 @@ public class CardapioDAO{
 
         }
     }
+
+    /**
+     * Carrega objeto cardapio a partir de um arquivo
+     * @return cardapio carregado
+     */
     public Cardapio carregar() {
         Cardapio cardapio = new Cardapio();
 
@@ -83,8 +90,4 @@ public class CardapioDAO{
 
         return cardapio;
     }
-
-
-    
-    
 }
