@@ -7,9 +7,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import modelo.Pedido;
 
 /**
@@ -18,8 +16,8 @@ import modelo.Pedido;
  */
 public class DiarioPizzariaDAO implements ArquivoDAO<Pedido> {
     private static final String SEPARADOR_CSV = ",";
+    private static final String SEPARADOR_CSV = ";";
     private final String caminhoArquivo;
-    private static final SimpleDateFormat FORMAT = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
     
     /**
      * Construtor que define o caminho do arquivo do diário
@@ -43,18 +41,19 @@ public class DiarioPizzariaDAO implements ArquivoDAO<Pedido> {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(caminhoArquivo, arquivoExiste))) {
             // Escreve o cabeçalho apenas se o arquivo não existir
             if (!arquivoExiste) {
-                writer.write("id,data,cliente,pizza,borda,acompanhamento1,acompanhamento2,acompanhamento3,observacao,valor_total");
+                writer.write("id" + SEPARADOR_CSV + "dia" + SEPARADOR_CSV + "mes" + SEPARADOR_CSV + "cliente" 
+                             + SEPARADOR_CSV + "pizza" + SEPARADOR_CSV + "borda" + SEPARADOR_CSV + 
+                             "acompanhamento1" + SEPARADOR_CSV + "acompanhamento2" + SEPARADOR_CSV + 
+                             "acompanhamento3" + SEPARADOR_CSV + "observacao" + SEPARADOR_CSV + "valor_total");
                 writer.newLine();
             }
-            
-            // Adiciona data e hora atual ao registrar o pedido
-            String dataHoraAtual = FORMAT.format(new Date());
             
             // Escreve os pedidos
             for (Pedido pedido : pedidos) {
                 StringBuilder linha = new StringBuilder();
                 linha.append(pedido.getId()).append(SEPARADOR_CSV);
-                linha.append(dataHoraAtual).append(SEPARADOR_CSV);
+                linha.append(pedido.getDia()).append(SEPARADOR_CSV);
+                linha.append(pedido.getMes()).append(SEPARADOR_CSV);
                 linha.append(pedido.getNomeCliente()).append(SEPARADOR_CSV);
                 linha.append(pedido.getPizza()).append(SEPARADOR_CSV);
                 linha.append(pedido.getBorda()).append(SEPARADOR_CSV);
@@ -103,6 +102,13 @@ public class DiarioPizzariaDAO implements ArquivoDAO<Pedido> {
                     //TODO: Isso depende da implementação completa da classe Pedido
 
                     //dia;mes;id;nome_cliente;pizza;borda;acomponhamentos;obs;valorTotal
+                    pedido.setDia(dados[1].trim());
+                    pedido.setMes(dados[2].trim());
+                    pedido.setNomeCliente(dados[3].trim());
+                    pedido.setPizza(dados[4].trim());
+                    pedido.setBorda(dados[5].trim());
+                    pedido.setAcompanhamentos(new String[] {dados[6].trim(), dados[7].trim(), dados[8].trim()});
+                    pedido.setValorTotal(Double.parseDouble(dados[10].trim()));
                     
                     pedidos.add(pedido);
                 }

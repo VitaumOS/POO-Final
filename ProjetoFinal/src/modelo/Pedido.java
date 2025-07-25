@@ -15,15 +15,21 @@ public class Pedido {
     private String nomeCliente;
     private int id;
     private String pizza;//TODO: String nome_pizza e String borda pizza
+    private String nomeCliente;
+    private String pizza;
     private String borda;
     private String[] acompanhamentos; //TODO: String acompanhamento
+    private String[] acompanhamentos;
     private String obs;
     private Random rd;
+    private String dia;
+    private String mes;
     private double valorTotal;
 
     public Pedido() {
         
         rd = new Random();
+        Random rd = new Random();
         id = rd.nextInt(99999); //gera um ID aleatório
         
         valorTotal = 0.0;
@@ -100,7 +106,44 @@ public class Pedido {
     }
 
 }
+    public void setNomeCliente(String nomeCliente) {
+        this.nomeCliente = nomeCliente;
+    }
 
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getPizza() {
+        return pizza;
+    }
+
+    public void setPizza(String pizza) {
+        this.pizza = pizza;
+    }
+
+    public String getBorda() {
+        return borda;
+    }
+
+    public void setBorda(String borda) {
+        this.borda = borda;
+    }
+
+    public String getObs() {
+        return obs;
+    }
+
+    public void setObs(String obs) {
+        this.obs = obs;
+    }
+
+    public String getDia() {
+        return dia;
+    }
 
     
