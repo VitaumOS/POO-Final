@@ -175,4 +175,12 @@ public class Pizzaria {
     public int getQuantBordaPizza(){
         return bordas.size();
     }
+    
+    public void adicionarPedidoAoHistorico(Pedido pedido) {
+        historicopedido.adicionarPedido(pedido);
+    }
+    
+    public HistoricoPedido getHistoricoPedido() {
+        return historicopedido;
+    }
 }

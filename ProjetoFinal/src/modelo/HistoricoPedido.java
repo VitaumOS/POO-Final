@@ -14,4 +14,22 @@ public class HistoricoPedido {
     
     private ArrayList<Pedido> pedidos; 
     
+    public HistoricoPedido() {
+        this.pedidos = new ArrayList<>();
+    }
+    
+    public void adicionarPedido(Pedido pedido) {
+        if (pedido != null) {
+            pedidos.add(pedido);
+        }
+    }
+    
+    public ArrayList<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(ArrayList<Pedido> pedidos) {
+        this.pedidos = pedidos;
+    }
+    
 }
