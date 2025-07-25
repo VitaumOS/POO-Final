@@ -4,8 +4,6 @@
  */
 package visao;
 
-import java.util.Set;
-import javax.swing.table.DefaultTableModel;
 import modelo.Pizzaria;
 
 /**
@@ -14,10 +12,10 @@ import modelo.Pizzaria;
  */
 public class EstoqueIngredientesUI extends javax.swing.JFrame {
     
-    private Pizzaria pizzaria;
 
     /**
      * Creates new form EstoqueIngredientesUI
+     * @param pizzaria
      */
     public EstoqueIngredientesUI(Pizzaria pizzaria) {
         initComponents();

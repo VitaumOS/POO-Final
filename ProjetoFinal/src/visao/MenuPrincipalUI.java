@@ -41,7 +41,7 @@ public class MenuPrincipalUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btn_novopedido = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btn_resumodia = new javax.swing.JButton();
         btn_estoqueingredientes = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
@@ -79,8 +79,13 @@ public class MenuPrincipalUI extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton3.setText("Ver resumo do dia");
+        btn_resumodia.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btn_resumodia.setText("Ver resumo do dia");
+        btn_resumodia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_resumodiaActionPerformed(evt);
+            }
+        });
 
         btn_estoqueingredientes.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btn_estoqueingredientes.setText("Ver estoque de ingredientes");
@@ -123,7 +128,7 @@ public class MenuPrincipalUI extends javax.swing.JFrame {
                     .addComponent(btn_estoqueingredientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
+                    .addComponent(btn_resumodia, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -139,7 +144,7 @@ public class MenuPrincipalUI extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_novopedido)
-                    .addComponent(jButton3))
+                    .addComponent(btn_resumodia))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_estoqueingredientes)
@@ -196,6 +201,10 @@ public class MenuPrincipalUI extends javax.swing.JFrame {
         new EstoqueIngredientesUI(pizzaria).setVisible(true);
     }//GEN-LAST:event_btn_estoqueingredientesActionPerformed
 
+    private void btn_resumodiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_resumodiaActionPerformed
+        new ResumoDiaUI(pizzaria).setVisible(true);
+    }//GEN-LAST:event_btn_resumodiaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -222,6 +231,7 @@ public class MenuPrincipalUI extends javax.swing.JFrame {
                 Clip clip = AudioSystem.getClip();
                 clip.open(audioInput);
                 clip.start();
+                clip.loop(999);
                 
             }
             else{
@@ -236,8 +246,8 @@ public class MenuPrincipalUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_estoqueingredientes;
     private javax.swing.JButton btn_novopedido;
+    private javax.swing.JButton btn_resumodia;
     private javax.swing.JMenu btn_sair;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
