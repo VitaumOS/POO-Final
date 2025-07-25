@@ -58,7 +58,7 @@ public class IngredienteDAO implements ArquivoDAO<Map.Entry<Ingrediente, Integer
         File arquivo = new File(caminhoArquivo);
         
         if (!arquivo.exists()) {
-            return resultado; // Retorna lista vazia se o arquivo não existir
+            return resultado; 
         }
         
         try (BufferedReader reader = new BufferedReader(new FileReader(caminhoArquivo))) {

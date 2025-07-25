@@ -5,8 +5,6 @@
 package modelo;
 
 import java.util.Random;
-import modelo.Acompanhamento;
-import modelo.Pizza;
 
 /**
  *
@@ -92,6 +90,11 @@ public class Pedido {
         return acompanhamentos[index];
     }
 
+    public void setAcompanhamentos(String acompanhamentos, int index) {
+        this.acompanhamentos[index] = acompanhamentos;
+    }
+    
+
 
     public String getObs() {
         return obs;
@@ -118,8 +121,20 @@ public class Pedido {
         this.mes = mes;
     }
 
-
     public void setValorTotal(double valorTotal) {
         this.valorTotal = valorTotal;
     }
+
+    public void setPizza(String pizza) {
+        this.pizza = pizza;
+    }
+
+    public void setBorda(String borda) {
+        this.borda = borda;
+    }
+
+    public void setObs(String obs) {
+        this.obs = obs;
+    }
+    
 }

@@ -58,12 +58,9 @@ public class DiarioPizzariaDAO implements ArquivoDAO<Pedido> {
                 linha.append(pedido.getBorda()).append(SEPARADOR_CSV);
                 
                 // Adiciona os acompanhamentos (pode ser "Nenhum")
-<<<<<<< HEAD
 
-                for (int i=0; i<3; i++) {
-=======
                 for (int i = 0; i < 3; i++) {
->>>>>>> 39c8d26bd1a6e0e86167be16695076fd6cad01e7
+
                     linha.append(pedido.getAcompanhamentos(i)).append(SEPARADOR_CSV);
                 }
                 
@@ -104,7 +101,9 @@ public class DiarioPizzariaDAO implements ArquivoDAO<Pedido> {
                     pedido.setNomeCliente(dados[3].trim());
                     pedido.setPizza(dados[4].trim());
                     pedido.setBorda(dados[5].trim());
-                    pedido.setAcompanhamentos(new String[] {dados[6].trim(), dados[7].trim(), dados[8].trim()});
+                    pedido.setAcompanhamentos(dados[6].trim(),0);
+                    pedido.setAcompanhamentos(dados[7].trim(),1);
+                    pedido.setAcompanhamentos(dados[8].trim(),2);
                     pedido.setValorTotal(Double.parseDouble(dados[10].trim()));
                     
                     pedidos.add(pedido);
