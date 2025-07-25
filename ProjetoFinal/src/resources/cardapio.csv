@@ -1,0 +1,21 @@
+[TIPO];[NOME];[PREÇO]
+Pizza;Pizza de Calabresa;30.0
+Pizza;Pizza de Mussarela;28.0
+Pizza;Pizza de Frango com Catupiry;32.0
+Pizza;Pizza Portuguesa;35.0
+Pizza;Pizza Quatro Queijos;34.0
+Pizza;Pizza Vegetariana;29.0
+Acompanhamento;Coca-Cola;10.0
+Acompanhamento;Guaraná;9.0
+Acompanhamento;Fanta Laranja;9.0
+Acompanhamento;Água Mineral;5.0
+Acompanhamento;Suco de Laranja;8.0
+Acompanhamento;Suco de Uva;8.5
+Acompanhamento;Refrigerante 2L;12.0
+Acompanhamento;Batata Frita;15.0
+Acompanhamento;Nuggets;14.0
+Borda;Recheada com Cheddar;
+Borda;Recheada com Catupiry;
+Borda;Recheada com Chocolate;
+Borda;Recheada com Cream Cheese;
+Borda;Borda Crocante com Alho;
