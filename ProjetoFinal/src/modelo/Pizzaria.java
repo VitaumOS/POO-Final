@@ -12,11 +12,11 @@ import java.util.ArrayList;
  */
 public class Pizzaria {
     
-    private ArrayList<Pizza> cardapio_pizzas;
+    private ArrayList<Pizza> cardapioPizzas;
     private ArrayList<Acompanhamento> acompanhamentos;
     private ArrayList<BordaPizza> bordas;
     private HistoricoPedido historicopedido;
-    private EstoqueIngredientes est_ing;
+    private EstoqueIngredientes estoque;
     
     public Pizzaria(){
         
@@ -43,23 +43,23 @@ public class Pizzaria {
         Ingrediente ing14 = new Ingrediente("Milho");
         Ingrediente ing15 = new Ingrediente("Orégano");
         
-        est_ing = new EstoqueIngredientes();
+        estoque = new EstoqueIngredientes();
         
-        est_ing.addIngrediente(ing1, 40);
-        est_ing.addIngrediente(ing2, 100);
-        est_ing.addIngrediente(ing3, 35);
-        est_ing.addIngrediente(ing4, 30);
-        est_ing.addIngrediente(ing5, 25);
-        est_ing.addIngrediente(ing6, 20);
-        est_ing.addIngrediente(ing7, 40);
-        est_ing.addIngrediente(ing8, 40);
-        est_ing.addIngrediente(ing9, 15);
-        est_ing.addIngrediente(ing10, 15);
-        est_ing.addIngrediente(ing11, 15);
-        est_ing.addIngrediente(ing12, 30);
-        est_ing.addIngrediente(ing13, 25);
-        est_ing.addIngrediente(ing14, 35);
-        est_ing.addIngrediente(ing15, 100);
+        estoque.addIngrediente(ing1, 40);
+        estoque.addIngrediente(ing2, 100);
+        estoque.addIngrediente(ing3, 35);
+        estoque.addIngrediente(ing4, 30);
+        estoque.addIngrediente(ing5, 25);
+        estoque.addIngrediente(ing6, 20);
+        estoque.addIngrediente(ing7, 40);
+        estoque.addIngrediente(ing8, 40);
+        estoque.addIngrediente(ing9, 15);
+        estoque.addIngrediente(ing10, 15);
+        estoque.addIngrediente(ing11, 15);
+        estoque.addIngrediente(ing12, 30);
+        estoque.addIngrediente(ing13, 25);
+        estoque.addIngrediente(ing14, 35);
+        estoque.addIngrediente(ing15, 100);
 
         pizza1.setIngrediente(ing1); 
         pizza1.setIngrediente(ing2); 
@@ -97,13 +97,13 @@ public class Pizzaria {
         pizza6.setIngrediente(ing8);  
         pizza6.setIngrediente(ing15); 
         
-        cardapio_pizzas = new ArrayList<>();
-        cardapio_pizzas.add(pizza1);
-        cardapio_pizzas.add(pizza2);
-        cardapio_pizzas.add(pizza3);
-        cardapio_pizzas.add(pizza4);
-        cardapio_pizzas.add(pizza5);
-        cardapio_pizzas.add(pizza6);
+        cardapioPizzas = new ArrayList<>();
+        cardapioPizzas.add(pizza1);
+        cardapioPizzas.add(pizza2);
+        cardapioPizzas.add(pizza3);
+        cardapioPizzas.add(pizza4);
+        cardapioPizzas.add(pizza5);
+        cardapioPizzas.add(pizza6);
 
         Acompanhamento acomp1 = new Acompanhamento("Coca-Cola", 10.0);
         Acompanhamento acomp2 = new Acompanhamento("Guaraná", 9.0);
@@ -146,16 +146,16 @@ public class Pizzaria {
     }
 
     public Pizza getCardapio_pizzas(int index) {
-        return cardapio_pizzas.get(index);
+        return cardapioPizzas.get(index);
     }
 
-    public EstoqueIngredientes getEstoqueIngredientes() {
-        return est_ing;
+    public EstoqueIngredientes getEstoque() {
+        return estoque;
     }
     
     public int getQuantPizza(){
         
-        return cardapio_pizzas.size();
+        return cardapioPizzas.size();
     }
     
     public Acompanhamento getAcompanhamentos(int index){

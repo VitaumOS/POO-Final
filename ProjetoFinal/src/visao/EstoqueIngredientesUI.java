@@ -20,9 +20,9 @@ public class EstoqueIngredientesUI extends javax.swing.JFrame {
     public EstoqueIngredientesUI(Pizzaria pizzaria) {
         initComponents();
         
-        for(int i=0; i<pizzaria.getEstoqueIngredientes().getQuantIngredientes(); i++){
-            String aux= pizzaria.getEstoqueIngredientes().pegarNomeIngredientes(i);
-            int qtd = pizzaria.getEstoqueIngredientes().getQuantidade(aux);
+        for(int i=0; i<pizzaria.getEstoque().getQuantIngredientes(); i++){
+            String aux= pizzaria.getEstoque().pegarNomeIngredientes(i);
+            int qtd = pizzaria.getEstoque().getQuantidade(aux);
 
             tabela_ingredientes.setValueAt(aux, i, 0);
             tabela_ingredientes.setValueAt(qtd, i, 1);

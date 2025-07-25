@@ -55,7 +55,7 @@ public class DiarioPizzariaDAO implements ArquivoDAO<Pedido> {
                 StringBuilder linha = new StringBuilder();
                 linha.append(pedido.getId()).append(SEPARADOR_CSV);
                 linha.append(dataHoraAtual).append(SEPARADOR_CSV);
-                linha.append(pedido.getNome_cliente()).append(SEPARADOR_CSV);
+                linha.append(pedido.getNomeCliente()).append(SEPARADOR_CSV);
                 linha.append(pedido.getPizza()).append(SEPARADOR_CSV);
                 linha.append(pedido.getBorda()).append(SEPARADOR_CSV);
                 
@@ -97,7 +97,7 @@ public class DiarioPizzariaDAO implements ArquivoDAO<Pedido> {
                     
                     // Configurar os dados do pedido
                     pedido.setId(Integer.parseInt(dados[0].trim()));
-                    pedido.setNome_cliente(dados[2].trim());
+                    pedido.setNomeCliente(dados[2].trim());
                     
                     //TODO: Aqui precisaria implementar os outros setters no Pedido
                     //TODO: Isso depende da implementação completa da classe Pedido

@@ -15,17 +15,17 @@ import java.util.HashMap;
 public class EstoqueIngredientes {
     
     private HashMap<String, Integer> ingredientes;
-    private ArrayList<Ingrediente> tipo_ingrediente;
+    private ArrayList<Ingrediente> tiposIngrediente;
     
     public EstoqueIngredientes(){
         ingredientes = new HashMap<>();
-        tipo_ingrediente = new ArrayList<>();
+        tiposIngrediente = new ArrayList<>();
     }
     
     public void addIngrediente(Ingrediente ing, int quant){
         Integer aux = quant;
         ingredientes.put(ing.getNome(), aux); 
-        tipo_ingrediente.add(ing);
+        tiposIngrediente.add(ing);
     }
     
     public int getQuantidade(String ing){
@@ -50,7 +50,7 @@ public class EstoqueIngredientes {
     }
     
     public String pegarNomeIngredientes(int index){
-        return tipo_ingrediente.get(index).getNome();
+        return tiposIngrediente.get(index).getNome();
     }
 
     public void reporEstoqueIngredientes(Ingrediente ingrediente, int quantidade){

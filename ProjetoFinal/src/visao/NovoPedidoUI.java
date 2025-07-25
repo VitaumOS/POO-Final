@@ -326,7 +326,7 @@ public class NovoPedidoUI extends javax.swing.JFrame {
             
             try{
                 Ingrediente ing = pizza.getIngrediente(i);
-                pizzaria.getEstoqueIngredientes().pegarIngrediente(ing);
+                pizzaria.getEstoque().pegarIngrediente(ing);
             }
             catch(EstoqueInsuficienteException ex){
                 int aux = i-1;
@@ -348,7 +348,7 @@ public class NovoPedidoUI extends javax.swing.JFrame {
         pedido.fazerPedido(nome, pizza, acomp1, acomp2, acomp3, obs.getText());
         javax.swing.JOptionPane.showMessageDialog(
             null, 
-            "Pedido feito com sucesso!\nO Pedido deu um valor de R$"+pedido.getValor_total(), 
+            "Pedido feito com sucesso!\nO Pedido deu um valor de R$"+pedido.getValorTotal(), 
             "Pedido completo", 
             javax.swing.JOptionPane.INFORMATION_MESSAGE
         );

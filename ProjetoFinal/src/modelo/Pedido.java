@@ -12,30 +12,26 @@ import java.util.Random;
  */
 public class Pedido {
     
-    private String nome_cliente;
+    private String nomeCliente;
     private int id;
     private String pizza;//TODO: String nome_pizza e String borda pizza
     private String borda;
     private String[] acompanhamentos; //TODO: String acompanhamento
     private String obs;
     private Random rd;
-    private double valor_total;
+    private double valorTotal;
 
     public Pedido() {
         
         rd = new Random();
         id = rd.nextInt(99999); //gera um ID aleatório
         
-        valor_total = 0.0;
+        valorTotal = 0.0;
         acompanhamentos = new String[3];
-    }
-
-    public double getValor_total() {
-        return valor_total;
     }
     
     public void fazerPedido(String nome_cliente, Pizza pizza, Acompanhamento acomp1, Acompanhamento acomp2, Acompanhamento acomp3, String obs){
-        this.nome_cliente = nome_cliente;
+        this.nomeCliente = nome_cliente;
         this.pizza = pizza.getNome();
         this.borda = pizza.getBorda().getNome();
         acompanhamentos[0] = "Nenhum";
@@ -44,21 +40,21 @@ public class Pedido {
         this.obs = obs;
         
         
-        valor_total+=pizza.getPreco();
+        valorTotal+=pizza.getPreco();
         if(!pizza.getBorda().getNome().equals("Sem Recheio")){
-            valor_total+=10.0;
+            valorTotal+=10.0;
         }
         if(acomp1!=null){
             acompanhamentos[0] = acomp1.getNome();
-            valor_total+=acomp1.getPreco();
+            valorTotal+=acomp1.getPreco();
         }
         if(acomp2!=null){
             acompanhamentos[1] = acomp2.getNome();
-            valor_total+=acomp2.getPreco();
+            valorTotal+=acomp2.getPreco();
         }
         if(acomp3!=null){
             acompanhamentos[2] = acomp3.getNome();
-            valor_total+=acomp3.getPreco();
+            valorTotal+=acomp3.getPreco();
         }
         
         
@@ -89,19 +85,19 @@ public class Pedido {
     }
     
     public double getValorTotal() {
-        return valor_total;
+        return valorTotal;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public String getNome_cliente() {
-        return nome_cliente;
+    public String getNomeCliente() {
+        return nomeCliente;
     }
 
-    public void setNome_cliente(String nome_cliente) {
-        this.nome_cliente = nome_cliente;
+    public void setNomeCliente(String nome_cliente) {
+        this.nomeCliente = nome_cliente;
     }
 }
 
