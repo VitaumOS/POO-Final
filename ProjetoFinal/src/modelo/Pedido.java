@@ -130,7 +130,3 @@ public class Pedido {
         this.valorTotal = valorTotal;
     }
 }
-
-
-
-    

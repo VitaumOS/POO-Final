@@ -13,7 +13,6 @@ import java.util.HashMap;
  * @author Vitor
  */
 public class EstoqueIngredientes {
-    
     private HashMap<String, Integer> ingredientes;
     private ArrayList<Ingrediente> tiposIngrediente;
     
