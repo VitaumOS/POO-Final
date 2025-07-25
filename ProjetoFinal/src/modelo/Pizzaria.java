@@ -6,23 +6,31 @@ package modelo;
 
 import dao.CardapioDAO;
 import dao.IngredienteDAO;
-import java.util.ArrayList;
 import services.GerenciadorDiario;
 import services.GerenciadorEstoque;
 
 /**
- *
+ * Classe que representa a pizzaria.
+ * Interage com as demais classes para criar o sistema
+ *  
  * @author Vitor
  */
 public class Pizzaria {
     
+
     Cardapio cardapio;
     private HistoricoPedido historicopedido;
     private EstoqueIngredientes estoque;
-
     private GerenciadorEstoque gerenciadorEstoque;
     private GerenciadorDiario gerenciadorDiario;
 
+    /**
+     * Construtor da classe Pizzaria.
+     * Inicializa todos os componentes necessários
+     * - Carrega o cardápio através do CardapioDAO
+     * - Cria o histórico de pedidos
+     * - Configura os gerenciadores de estoque e diário
+     */
     public Pizzaria(){
         CardapioDAO cardapioDAO = new CardapioDAO();
         cardapio = new Cardapio(cardapioDAO.carregar());
