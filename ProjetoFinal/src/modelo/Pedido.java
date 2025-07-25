@@ -7,7 +7,7 @@ package modelo;
 import java.util.Random;
 
 /**
- *
+ * Classe responsável por registrar o pedido do cliente 
  * @author Vitor
  */
 public class Pedido {
@@ -21,6 +21,10 @@ public class Pedido {
     private String mes;
     private double valorTotal;
 
+    /**
+     * Construtor da classe Pedido
+     * Cria um número aleatório para ser a identificação do pedido e um array com três posições para selecionar os acompanhamentos
+     */
     public Pedido() {
         
         Random rd = new Random();
@@ -30,6 +34,16 @@ public class Pedido {
         acompanhamentos = new String[3];
     }
     
+    /**
+     * Registra o pedido realizado e contabiliza cada item selecionado calculando o valor total
+     * 
+     * @param nome_cliente Nome do cliente que está fazendo o pedido
+     * @param pizza Objeto Pizza selecionada pelo cliente
+     * @param acomp1 Primeiro acompanhamento (pode ser null)
+     * @param acomp2 Segundo acompanhamento (pode ser null)
+     * @param acomp3 Terceiro acompanhamento (pode ser null)
+     * @param obs Observações especiais do pedido
+     */
     public void fazerPedido(String nome_cliente, Pizza pizza, Acompanhamento acomp1, Acompanhamento acomp2, Acompanhamento acomp3, String obs){
         this.nomeCliente = nome_cliente;
         this.pizza = pizza.getNome();
