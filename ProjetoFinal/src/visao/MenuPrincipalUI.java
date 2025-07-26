@@ -166,7 +166,25 @@ public class MenuPrincipalUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_cabanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cabanaActionPerformed
-
+        // Opção 1: Mini-jogo simples
+        new CabanaGameUI().setVisible(true);
+        
+        // Opção 2: Jogo HTML5
+        // new WebGameUI().setVisible(true);
+        
+        // Opção 3: Executar jogo externo
+        /*
+        try {
+            String caminhoDoom = "C:\\Jogos\\Doom\\doom.exe"; // Caminho de exemplo
+            ProcessBuilder pb = new ProcessBuilder(caminhoDoom);
+            pb.start();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, 
+                "Erro ao abrir o jogo: " + e.getMessage(), 
+                "Erro", 
+                JOptionPane.ERROR_MESSAGE);
+        }
+        */
     }//GEN-LAST:event_btn_cabanaActionPerformed
 
     private void btn_novopedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_novopedidoActionPerformed
