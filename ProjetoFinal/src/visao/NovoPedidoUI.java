@@ -350,7 +350,6 @@ public class NovoPedidoUI extends javax.swing.JFrame {
                     javax.swing.JOptionPane.ERROR_MESSAGE
                 );
             }
-            //FAZER O MESMO PRA BORDA
         }
         
         if(checkbox_acomp.isSelected()){
