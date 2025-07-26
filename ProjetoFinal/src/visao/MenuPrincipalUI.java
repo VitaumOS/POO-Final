@@ -189,8 +189,8 @@ public class MenuPrincipalUI extends javax.swing.JFrame {
    
     
     public static void main(String args[]) {
-        
-        String filepath ="src\\sounds\\fnaf_music.wav";
+        // Usar separadores de caminho independentes de sistema operacional
+        String filepath = "src" + File.separator + "sounds" + File.separator + "fnaf_music.wav";
         PlayMusic(filepath);
         
         /* Create and display the form */
@@ -200,20 +200,59 @@ public class MenuPrincipalUI extends javax.swing.JFrame {
             }
         });
     }
-     
+ 
     public static void PlayMusic(String location){
         try{
+            // Tentar vários caminhos possíveis
             File musicPath = new File(location);
+            if (!musicPath.exists()) {
+                // Tentar com caminho absoluto do projeto
+                String projectPath = System.getProperty("user.dir");
+                musicPath = new File(projectPath + File.separator + location);
+                
+                // Se ainda não encontrou, tente outras alternativas
+                if (!musicPath.exists()) {
+                    String[] possiveisCaminhos = {
+                        "ProjetoFinal" + File.separator + location,
+                        ".." + File.separator + location
+                    };
+                    
+                    for (String caminho : possiveisCaminhos) {
+                        File tentativa = new File(caminho);
+                        if (tentativa.exists()) {
+                            musicPath = tentativa;
+                            break;
+                        }
+                    }
+                }
+            }
+            
             if(musicPath.exists()){
+                System.out.println("Arquivo de música encontrado: " + musicPath.getAbsolutePath());
                 AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
                 Clip clip = AudioSystem.getClip();
                 clip.open(audioInput);
+                
+                // Controle de volume - valores negativos diminuem o volume
+                // -10.0f volume moderadamente baixo
+                // -20.0f volume baixo
+                // -30.of volume beeeem baixinho
+                if (clip.isControlSupported(javax.sound.sampled.FloatControl.Type.MASTER_GAIN)) {
+                    javax.sound.sampled.FloatControl gainControl = 
+                        (javax.sound.sampled.FloatControl) clip.getControl(
+                            javax.sound.sampled.FloatControl.Type.MASTER_GAIN);
+                    gainControl.setValue(-20.0f); // Reduz o volume (valores negativos em dB)
+                }
+                
                 clip.start();
                 clip.loop(999);
+            } else {
+                System.err.println("Arquivo de música não encontrado: " + location);
             }
         }
         catch(Exception e){
-            
+            System.err.println("Erro ao reproduzir música: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
