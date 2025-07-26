@@ -5,7 +5,6 @@
 package modelo;
 
 import dao.CardapioDAO;
-import dao.IngredienteDAO;
 import services.GerenciadorDiario;
 import services.GerenciadorEstoque;
 
@@ -31,28 +30,48 @@ public class Pizzaria {
      * - Cria o histórico de pedidos
      * - Configura os gerenciadores de estoque e diário
      */
-    public Pizzaria(){
+    public Pizzaria() {
+        String caminhoIngredientes = obterCaminhoArquivo("ingredientes.csv");
+        String caminhoDiario = obterCaminhoArquivo("diarioPizzaria.csv");
+
         CardapioDAO cardapioDAO = new CardapioDAO();
         cardapio = new Cardapio(cardapioDAO.carregar());
   
-        IngredienteDAO ingDAO = new IngredienteDAO("src\\resources\\ingredientes.csv");
-        estoque = new EstoqueIngredientes(ingDAO.carregar());
-
-        historicopedido = new HistoricoPedido();
-        
-        
+        // Inicializa o estoque sem ingredientes primeiro
         estoque = new EstoqueIngredientes();
 
-        String caminhoIngredientes = "src\\resources\\ingredientes.csv";
-        String caminhoDiario = "src\\resources\\diarioPizzaria.csv";
+        historicopedido = new HistoricoPedido();
 
+        // Configura o gerenciador que carregará os ingredientes
         this.gerenciadorEstoque = new GerenciadorEstoque(caminhoIngredientes, estoque);
         this.gerenciadorDiario = new GerenciadorDiario(caminhoDiario);
 
+        // Agora carrega os ingredientes usando o gerenciador
         gerenciadorEstoque.carregarEstoque();
         gerenciadorDiario.carregarHistorico();
     }
 
+    private String obterCaminhoArquivo(String nomeArquivo) {
+        String[] possiveisCaminhos = {
+            "src/resources/" + nomeArquivo,
+            "src\\resources\\" + nomeArquivo,
+            "./src/resources/" + nomeArquivo,
+            "ProjetoFinal/src/resources/" + nomeArquivo,
+            System.getProperty("user.dir") + "/src/resources/" + nomeArquivo,
+            System.getProperty("user.dir") + "\\src\\resources\\" + nomeArquivo
+        };
+        
+        for (String caminho : possiveisCaminhos) {
+            java.io.File arquivo = new java.io.File(caminho);
+            if (arquivo.exists()) {
+                return caminho;
+            }
+        }
+        
+        // Se não encontrou, usa o caminho padrão
+        String caminhoDefault = "src/resources/" + nomeArquivo;
+        return caminhoDefault;
+    }
 
     public Cardapio getCardapio(){
         return cardapio;

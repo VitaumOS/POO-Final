@@ -23,12 +23,7 @@ public class DiarioPizzariaDAO implements ArquivoDAO<Pedido> {
      */
     public DiarioPizzariaDAO(String caminhoArquivo) {
         this.caminhoArquivo = caminhoArquivo;
-        // Garante que o diretório exista
-        File arquivo = new File(caminhoArquivo);
-        File diretorio = arquivo.getParentFile();
-        if (diretorio != null && !diretorio.exists()) {
-            diretorio.mkdirs();
-        }
+        // Removida a criação automática de diretório
     }
     
     @Override

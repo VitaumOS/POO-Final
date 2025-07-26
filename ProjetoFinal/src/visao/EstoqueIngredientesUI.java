@@ -18,16 +18,30 @@ public class EstoqueIngredientesUI extends javax.swing.JFrame {
      * @param pizzaria
      */
     public EstoqueIngredientesUI(Pizzaria pizzaria) {
-        initComponents();
+        initComponents(); 
+        pizzaria.getGerenciadorEstoque().carregarEstoque();
+        atualizarTabelaIngredientes(pizzaria);
+    }
+
+    /**
+     * Atualiza a tabela de ingredientes com dados do estoque atual
+     * @param pizzaria Instância da pizzaria com o estoque
+     */
+    private void atualizarTabelaIngredientes(Pizzaria pizzaria) {
+        // Limpar a tabela
+        for (int i = 0; i < tabela_ingredientes.getRowCount(); i++) {
+            tabela_ingredientes.setValueAt(null, i, 0);
+            tabela_ingredientes.setValueAt(null, i, 1);
+        }
         
+        // Preencher com dados atuais
         for(int i=0; i<pizzaria.getEstoque().getQuantIngredientes(); i++){
-            String aux= pizzaria.getEstoque().pegarNomeIngredientes(i);
+            String aux = pizzaria.getEstoque().pegarNomeIngredientes(i);
             int qtd = pizzaria.getEstoque().getQuantidade(aux);
 
             tabela_ingredientes.setValueAt(aux, i, 0);
             tabela_ingredientes.setValueAt(qtd, i, 1);
         }
-            
     }
 
     /**

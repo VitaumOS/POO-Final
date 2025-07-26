@@ -25,16 +25,23 @@ public class IngredienteDAO implements ArquivoDAO<Map.Entry<Ingrediente, Integer
      */
     public IngredienteDAO(String caminhoArquivo) {
         this.caminhoArquivo = caminhoArquivo;
-        // Garante que o diretório exista
-        File arquivo = new File(caminhoArquivo);
-        File diretorio = arquivo.getParentFile();
-        if (diretorio != null && !diretorio.exists()) {
-            diretorio.mkdir();
-        }
+        // Removida a criação automática de diretório
     }
     
     @Override
     public void salvar(ArrayList<Map.Entry<Ingrediente, Integer>> objetos){
+        File arquivo = new File(caminhoArquivo);
+        if (!arquivo.exists()) {
+            System.err.println("Arquivo de ingredientes não existe e não será criado: " + caminhoArquivo);
+            javax.swing.JOptionPane.showMessageDialog(
+                null,
+                "Arquivo de ingredientes não encontrado: " + caminhoArquivo,
+                "Erro de arquivo",
+                javax.swing.JOptionPane.ERROR_MESSAGE
+            );
+            return;
+        }
+        
         try (BufferedWriter wr = new BufferedWriter(new FileWriter(caminhoArquivo))) {
             // Escreve o cabeçalho
             wr.write("nome" + SEPARADOR_CSV + "quantidade");
@@ -58,31 +65,54 @@ public class IngredienteDAO implements ArquivoDAO<Map.Entry<Ingrediente, Integer
         File arquivo = new File(caminhoArquivo);
         
         if (!arquivo.exists()) {
-            return resultado; 
+            System.err.println("Arquivo não encontrado: " + caminhoArquivo);
+            javax.swing.JOptionPane.showMessageDialog(
+                null,
+                "Arquivo de ingredientes não encontrado: " + caminhoArquivo,
+                "Erro de arquivo",
+                javax.swing.JOptionPane.ERROR_MESSAGE
+            );
+            return resultado;
         }
-        
+
         try (BufferedReader reader = new BufferedReader(new FileReader(caminhoArquivo))) {
-            String linha;
-            // Pula a primeira linha (cabeçalho)
             reader.readLine();
-            
+
+            String linha;
+            int contadorLinhas = 0;
             while ((linha = reader.readLine()) != null) {
+                contadorLinhas++;
                 String[] dados = linha.split(SEPARADOR_CSV);
                 if (dados.length >= 2) {
                     String nome = dados[0].trim();
                     int quantidade = Integer.parseInt(dados[1].trim());
-                    
+
                     // Cria um ingrediente e adiciona na lista com sua quantidade
                     Ingrediente ingrediente = new Ingrediente(nome);
                     Map<Ingrediente, Integer> map = new HashMap<>();
                     map.put(ingrediente, quantidade);
-                    
+
                     resultado.add(map.entrySet().iterator().next());
                 }
             }
         } catch(IOException e) {
-            System.err.println("Erro ao ler o arquivo.");
+            System.err.println("Erro de IO: " + e.getMessage());
             e.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(
+                null,
+                "Erro ao ler o arquivo de ingredientes:\n" + e.getMessage(),
+                "Erro de leitura",
+                javax.swing.JOptionPane.ERROR_MESSAGE
+            );
+        } catch(Exception e) {
+            System.err.println("Exceção geral: " + e.getMessage());
+            e.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(
+                null, 
+                "Erro inesperado: " + e.getMessage(),
+                "Erro de processamento",
+                javax.swing.JOptionPane.ERROR_MESSAGE
+            );
         }
         return resultado;
     }
