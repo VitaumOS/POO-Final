@@ -5,7 +5,10 @@
 package excecoes;
 
 /**
- *
+ * Exceção lançada quando não foi inserido o nome.
+ * 
+ * Esta exceção deve ser utilizada para sinalizar situações em que deve-se inserir o nome para finalizar o processo.
+ * 
  * @author Vitor
  */
 public class FaltouColocarNomeException extends Exception {
