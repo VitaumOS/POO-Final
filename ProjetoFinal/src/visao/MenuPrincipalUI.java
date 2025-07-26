@@ -179,7 +179,15 @@ public class MenuPrincipalUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_cabanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cabanaActionPerformed
-
+        javax.swing.JOptionPane.showMessageDialog(
+            this,
+            "Você está indo para o Cabana! O sistema será encerrado.",
+            "Aviso",
+            javax.swing.JOptionPane.INFORMATION_MESSAGE
+        );
+        
+        // Fecha o sistema
+        System.exit(0);
     }//GEN-LAST:event_btn_cabanaActionPerformed
 
     private void btn_novopedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_novopedidoActionPerformed
