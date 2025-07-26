@@ -81,6 +81,7 @@ public class NovoPedidoUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Novo Pedido");
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel1.setText("Novo Pedido");
@@ -330,6 +331,7 @@ public class NovoPedidoUI extends javax.swing.JFrame {
         Acompanhamento acomp1 = null;
         Acompanhamento acomp2 = null;
         Acompanhamento acomp3 = null;
+        boolean flag=true;
         
         if(checkbox_borda.isSelected()){
            pizza.getBorda().setNome(combobox_borda.getItemAt(combobox_borda.getSelectedIndex()));
@@ -342,13 +344,13 @@ public class NovoPedidoUI extends javax.swing.JFrame {
                 pizzaria.getEstoque().consumirIngrediente(ing);
             }
             catch(EstoqueInsuficienteException ex){
-                int aux = i-1;
                 javax.swing.JOptionPane.showMessageDialog(
                     null, 
                     ex.getMessage(), 
                     "Erro", 
                     javax.swing.JOptionPane.ERROR_MESSAGE
                 );
+                flag=false;
             }
         }
         
@@ -357,7 +359,7 @@ public class NovoPedidoUI extends javax.swing.JFrame {
             acomp2 = pizzaria.getCardapio().getAcompanhamentos(combobox_acomp2.getSelectedIndex()-1);
             acomp3 = pizzaria.getCardapio().getAcompanhamentos(combobox_acomp3.getSelectedIndex()-1);
         }
-        boolean comNome=true;
+        
         
         //Vai verificar se o pedido está sem nome
         try{
@@ -370,11 +372,11 @@ public class NovoPedidoUI extends javax.swing.JFrame {
                     "Erro", 
                     javax.swing.JOptionPane.ERROR_MESSAGE
             );
-            comNome=false;
+            flag=false;
         }
         
         //Caso tenha o nome, vai continuar o processo normalmente
-        if(comNome){
+        if(flag){
             pizzaria.adicionarPedidoAoHistorico(pedido);
             // Adicionar ao diário (persistência)
             boolean registrouDiario = pizzaria.getGerenciadorDiario().registrarPedido(pedido);

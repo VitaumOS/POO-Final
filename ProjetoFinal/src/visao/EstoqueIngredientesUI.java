@@ -35,7 +35,7 @@ public class EstoqueIngredientesUI extends javax.swing.JFrame {
         }
         
         // Preencher com dados atuais
-        for(int i=0; i<pizzaria.getEstoque().getQuantIngredientes(); i++){
+        for(int i=0; i<tabela_ingredientes.getRowCount(); i++){
             String aux = pizzaria.getEstoque().pegarNomeIngredientes(i);
             int qtd = pizzaria.getEstoque().getQuantidade(aux);
 
@@ -60,6 +60,7 @@ public class EstoqueIngredientesUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Estoque de Ingredientes");
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel1.setText("Estoque de Ingredientes");
