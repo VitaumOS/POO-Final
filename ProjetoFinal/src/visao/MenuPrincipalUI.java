@@ -25,6 +25,19 @@ public class MenuPrincipalUI extends javax.swing.JFrame {
     public MenuPrincipalUI() {
         initComponents();
         pizzaria = new Pizzaria();
+        
+        // Adiciona o ícone da aplicação
+        try {
+            // Carrega o ícone do arquivo
+            java.net.URL imageURL = getClass().getResource("/img/fazbear_icon.png");
+            if (imageURL != null) {
+                setIconImage(new javax.swing.ImageIcon(imageURL).getImage());
+            } else {
+                System.err.println("Arquivo de ícone não encontrado!");
+            }
+        } catch (Exception e) {
+            System.err.println("Erro ao carregar o ícone: " + e.getMessage());
+        }
     }
 
     /**

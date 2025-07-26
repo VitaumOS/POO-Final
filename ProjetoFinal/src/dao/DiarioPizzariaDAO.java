@@ -80,27 +80,24 @@ public class DiarioPizzariaDAO implements ArquivoDAO<Pedido> {
         
         try (BufferedReader reader = new BufferedReader(new FileReader(caminhoArquivo))) {
             String linha;
-            // Pula a primeira linha (cabeçalho)
-            reader.readLine();
             
             while ((linha = reader.readLine()) != null) {
                 String[] dados = linha.split(SEPARADOR_CSV);
-                if (dados.length >= 10) {
-                    // Cria um novo pedido com os dados do arquivo
-                    Pedido pedido = new Pedido();
-                    
-                    // Configurar os dados do pedido
-                    pedido.setId(Integer.parseInt(dados[0].trim()));
-                    pedido.setNomeCliente(dados[3].trim());
-                    pedido.setPizza(dados[4].trim());
-                    pedido.setBorda(dados[5].trim());
-                    pedido.setAcompanhamentos(dados[6].trim(),0);
-                    pedido.setAcompanhamentos(dados[7].trim(),1);
-                    pedido.setAcompanhamentos(dados[8].trim(),2);
-                    pedido.setValorTotal(Double.parseDouble(dados[10].trim()));
-                    
-                    pedidos.add(pedido);
-                }
+                // Cria um novo pedido com os dados do arquivo
+                Pedido pedido = new Pedido();
+                
+                // Configurar os dados do pedido
+                pedido.setId(Integer.parseInt(dados[0].trim()));
+                pedido.setNomeCliente(dados[1].trim());
+                pedido.setPizza(dados[2].trim());
+                pedido.setBorda(dados[3].trim());
+                pedido.setAcompanhamentos(dados[4].trim(), 0);
+                pedido.setAcompanhamentos(dados[5].trim(), 1);
+                pedido.setAcompanhamentos(dados[6].trim(), 2);
+                pedido.setObs(dados[7].trim());
+                pedido.setValorTotal(Double.parseDouble(dados[8].trim()));
+                
+                pedidos.add(pedido);
             }
         } catch (IOException e) {
             System.err.println("Erro ao ler o arquivo.");
